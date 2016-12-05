@@ -1,0 +1,319 @@
+/*
+ Theme Name:   	Accelerate Theme Child
+ Theme URI:    	http://skillcrush.com/accelerate-theme-child/
+ Description:  		Accelerate Child Theme - Accelerate
+ Author:       		Bobbi Mullins
+ Author URI:   		http://andyrobsondesign.com
+ Template:     		accelerate-theme
+ Version:      		1.0.0
+ Tags:         		light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
+ Text Domain:  	accelerate-theme-child
+*/
+
+.home-page {
+	background: url("img/hero-header.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
+	height: 600px;
+	background-size: cover;
+}
+.button {
+    background: none repeat scroll 0 0 #f9c2c7;
+    font-weight: bold;
+    padding: 20px 50px;
+    text-align: center;
+}
+#masthead.site-header{
+	background:none repeat scroll 0 0 #f9c2c7;
+}
+
+/********************
+Top Nav Menu 
+*********************/
+  .main-navigation ul {
+    display: block;
+  }
+}
+.site-main .comment-navigation, .site-main .posts-navigation, .site-main .post-navigation {
+  margin: 0 0 1.5em;
+  overflow: hidden;
+}
+.comment-navigation .nav-previous, .posts-navigation .nav-previous, .post-navigation .nav-previous {
+  float: left;
+  width: 50%;
+}
+.comment-navigation .nav-next, .posts-navigation .nav-next, .post-navigation .nav-next {
+  float: right;
+  text-align: right;
+  width: 50%;
+}
+.site-title {
+  font-size: 24px;
+  line-height: 52px;
+  color: #666;
+  transition: all 0.3s ease;
+  -webkit-transition: all 0.3s ease;
+  -moz-transition: all 0.3s ease;
+}
+.site-title:hover {
+  color: #333;
+}
+#site-navigation .module.left {
+  padding-left: 15px;
+}
+div.left {
+    padding-left: 2%;
+}
+
+footer.navigation.container {
+    border: none;
+}
+
+.entry-footer {
+  clear: both;
+}
+
+body {
+	font-family: 'Source Sans Pro', sans-serif;
+}
+
+#about, #work, #contact {
+    height: 600px;
+}
+
+/***** GRID *****/
+
+.full-width {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+.half-width {
+	width: 600px;
+	float: left;
+}
+
+.third-width {
+	width: 400px;
+	float: left;
+}
+
+/***** HEADER *****/
+
+header {
+	height: 800px;
+	background: url('../img/full-background.png');
+	color:#f9c2c7;
+	background-size: cover;
+}
+
+header h1 {
+	font-family: 'Lora', serif;
+	font-size: 30px;
+	color: #bbc085;
+	padding: 0px 0;
+}
+
+nav {
+	float: right;
+	padding: 0px 40px;
+}
+
+nav ul li {
+	display: inline-block;
+}
+
+nav ul li a {
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 18px;
+	color: #828282;
+	padding-left: 80px;
+}
+
+header h2 {
+	width: 1000px;
+	clear: both;
+	font-family: 'Lora', serif; 
+	font-size: 72px;
+	line-height: 80px;
+	color: #9b9b9b;
+	padding: 20px 0;
+}
+
+header h2 span {
+	color: #2b2b2b;
+}
+/**********************************************
+**** Featured Work Section for the Homepage**** 
+**********************************************/
+/* skills */
+.article.skills {
+	margin:40px 0 0;
+}
+#skills h3 {
+	font-family: 'Lora', serif;
+	font-size: 22px;
+	color: #2b2b2b;
+	text align:center;
+}
+aside.skills-sidebar {
+	float:left;
+	width:314px;
+	margin: 0 40px 0 0;
+}
+
+div.skills-images {
+	width:600px;
+}
+
+div.skills-images img {
+	display:block;
+	margin-bottom:50px;
+	border:1px solid #dddddd;
+}
+
+li.skills {
+	display:inline-block;
+	padding:114px;
+}
+
+h4.center {
+	text-align: center;
+	font-color: black;
+
+}
+
+/******Home*******/ 
+#home h2 {
+	font-family: 'Lora', serif;
+	font-size: 36px;
+	color: #2b2b2b;
+	align:center;
+}
+#home h3 {
+	font-family: 'Lora', serif;
+	font-size: 22px;
+	color: #2b2b2b;
+	align:center;
+}
+#home p {
+	font-size: 21px;
+	color: #7f7f7f;
+	line-height: 40px;
+	padding-right: 50px;
+}
+
+/***** ABOUT *****/
+#about {
+	background-color: #f9c2c7;
+	text-align: center;
+}
+#about .third-width {
+	padding: 115px 0;
+}
+
+#about h2 {
+	font-family: 'Lora', serif;
+	font-size: 36px;
+	color: #2b2b2b;
+	align:center;
+}
+
+#about p {
+	font-size: 18px;
+	color: #7f7f7f;
+	line-height: 40px;
+	padding-right: 50px;
+	align:center;
+}
+
+/***** WORK *****/
+
+#work {
+	background-color: #fbd9cd;
+	text-align: center;
+}
+
+#work .third-width {
+	padding: 115px 0;
+}
+
+#work img {
+	padding-bottom: 30px;
+}
+
+#work h3 {
+	font-size: 24px;
+	color: #2b2b2b;
+	width: 190px;
+	margin: 0 auto;
+}
+
+#work p {
+	font-family: 'Lora', serif;
+	font-size: 18px;
+	line-height: 30px;
+	color: #2b2b2b;
+	padding: 0 35px;
+}
+
+#contact {
+	background-color: #ebebeb;
+}
+
+#contact .full-width {
+	padding: 110px 0;
+}
+
+#contact img#contact-img {
+	border: 12px solid #ebebeb;
+}
+
+#contact h2, #contact #email-header, #contact #socialmedia-header, #contact ul {
+	padding-left: 115px;
+}
+
+#contact #envelope {
+	padding: 0 0px 0 0px;
+	background-color:#ebebeb;
+}
+
+#contact h2 {
+	font-family: 'Lora', serif;
+	font-size: 36px;
+	color: #2b2b2b;
+}
+
+#contact #email-header {
+	font-size: 32px;
+	font-weight: lighter;
+	margin: -30px 0 5px 0;
+}
+
+#contact #socialmedia-header {
+	font-weight: bold;
+	font-size: 29px;
+	margin: 40px 0 0 0;
+}
+
+#contact a {
+	text-decoration: none;
+	color: #c49075;
+	font-weight: bold;
+	font-size: 28px;
+}
+
+#contact ul {
+	list-style: none;
+}
+
+#contact ul li {
+	display: inline-block;
+}
+
+#contact ul img {
+	padding-right: 55px;
+}
+
+#contact ul img {
+	padding-right: 55px;
+}
