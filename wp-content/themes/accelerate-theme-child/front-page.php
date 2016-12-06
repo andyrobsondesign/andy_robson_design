@@ -48,7 +48,6 @@ get_header(); ?>
 						<?php endwhile; // end of the loop. ?>
 						<?php wp_reset_query(); // resets the altered query back to the original ?>
 					</ul>
-
 				</div>
 			</section>
 			<section id="about">
@@ -69,7 +68,12 @@ get_header(); ?>
             <h3>Something Else?</h3>
               <p>Do you need a consult  or training?  Need a logo or help with branding?  Not sure exactly what you need and have some questions? I can help!  </p>
             </div>
-			</div>
+			<br>
+		
+			<div class=package>
+				<p><a class="button" href="<?php echo home_url(); ?>/packages">Packages</a>
+			</p></div>
+				
         </section>
 	    <div class="half-width" id="contact-info">							<img src="http://localhost:8888/andy_robson_design/wp-content/uploads/2016/11/contact-image-e1480218040910.png"/> 
 	               </div>
