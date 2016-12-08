@@ -336,5 +336,70 @@ img.attachment-thumbnail.size-thumbnail{
 	border:dotted;
 	
 }
+/******SKills pages*********/
+.design-section,
+.discover-section {
+	display: inline-block;
+	align:right;
 	
+}
+
+.design-section h2,
+.discover-section h2, 
+.research-section h2{
+    font-weight: 600;
+	display: inline-block;
+	
+}
+
+.discover-section, .design-section:nth-child(odd) .service-image {
+    float: left;
+
+	
+}
+
+.research-section:nth-child(even) .service-image {
+    float: right;
+	
+}
+
+.design-description, .research-description, .discover-description {
+	display: inline-block;
+}
+
+.design-description, .research-description, .discover-description  p{
+    color: #555;
+	width: 575px;
+	display:inline-block;
+	
+	
+}
+
+.align-left {
+    float: left;
+	display: inline-block;
+	
+}
+.align-right {
+    float: right;
+	display: inline-block;
+}
+
+.contact-tag {
+    margin-top: 50px;
+    text-align: center;
+	display: inline-block;
+	margin-left:400px;
+}
+
+.contact-description {
+    float:center;
+    display: inline-block;
+}
+
+.contact-button {
+    float:center;
+    display: inline-block;
+	border:dotted;
+}
 
