@@ -21,77 +21,19 @@ get_header(); ?>
 
 			<div class="site-content">
 			<div class="about">	
-				<h4>Our Services</h4>
-				<p>We take pride in our clients and the content we create for them.  Here is a brief overview of our services offered.</p>
+				<h4>About Me</h4>
+				<p>Hello! Welcome to Andy Robson Design.  I'm Bobbi.  Who is Andy Robson you may ask?  Well, Andy Robson is a combination of people.  Andy is in honor of my grandfather "Andy" Anderson as well as my maternal grandmother.  The Robson portion of the name come from both my parents and paternal grandmother.  All of these people have taught me the importance of honor, honesty, and integrity which is the foundation of Andy Robson Design.  They've taught me to follow my dreams, pursue my passions, and believe that anything is possible if you work hard. This is not only the foundation of Andy Robson Design but also what I hope to help others realize in their own lives.   
+ </p>
+ <section id="quote">
+<p><span>What ever you do, do it <strong>well</strong>. </span> Do it so that when people see you do it they will want to <strong>come back</strong> and see you do it <strong>again</strong> and they will want to bring others and show them how <strong>well</strong> you do what you do.</p>
+<div class="quoteauthor">
+ <p>-Walt Disney </p>
+</div>
 </div><!-- .site-content -->
-<div>
-	<section class="site-content">
-<?php while ( have_posts() ) : the_post();
-	$image_1 = get_field('content_image');
-	$content_strategy = get_field('content_strategy');
-	$influencer_mapping = get_field('influencer_mapping');
-	$image_2 = get_field('influencer_image');
-	$social_media_strategy = get_field('social_media_strategy');
-	$image_3 = get_field('social_image');
-	$design_and_development = get_field('design_and_development');  
-	$image_4 = get_field('design_image'); 
-	$size = "medium"; 
-	$contac_us = get_field('contact_us'); ?>
-
-<section class="about-section">
-	<div class="image-1 align-left">
-		<?php echo wp_get_attachment_image( $image_1, $size ); ?>
-	</div>
-	<div class="content-strategy">
-		<h2>Content Strategy</h2> 
-		<p><?php echo $content_strategy; ?></p>
-		
-	</div>
 </section>
-
-<section class="about-section">
-	<div class="image-2 align-right">
-		<?php echo wp_get_attachment_image( $image_2, $size ); ?>
-	</div>
-	<div class="influencer-mapping">
-		<h2>Influencer Mapping</h2>
-		<p><?php echo $influencer_mapping; ?></p>
-	</div>
+<section class="contact">
+	<div class="half-width2">
+				<h2>Questions?</h2>
+				<h2>			<img src="http://localhost:8888/andy_robson_design/wp-content/uploads/2016/11/Envelope.png" id="contact-img" alt="Contact image" /><a class="image" href="<?php echo home_url(); ?>/contact-me">Contact Me</a>
+</div>
 </section>
-
-<section class="about-section">
-	<div class="image-3 align-left">
-		<?php echo wp_get_attachment_image( $image_3, $size ); ?>
-	</div>
-	<div class="social-media-strategy">
-		<h2>Social Media Strategy</h2>
-		<p><?php echo $social_media_strategy; ?></p>
-	</div>
-</section>
-	
-<section class="about-section">
-	<div class="image-4 align-right">
-		<?php echo wp_get_attachment_image( $image_4, $size ); ?>
-	</div>
-	<div class="Design_and_Development">
-		<h2>Design & Development</h2>
-		<p><?php echo $design_and_development; ?></p>	
-		</div>
-	</div>
-	</section>
-
-	<?php endwhile; //end of the loop /?>
-	<div>
-  
-	<section class="site-content">
-	      <div class="about-tag">
-			
-	      <h2>Interested in working with us?<?php echo $contact_us; ?></h2>
-			  <br>
-<a class="button" href="<?php echo home_url(); ?>/contact-us">Contact Us</a>
-		  </div>
-	      </div><!-- about-tag -->
-	    </div><!-- #content -->
-
-	<?php get_footer(); ?>
-	

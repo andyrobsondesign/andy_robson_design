@@ -80,7 +80,7 @@ get_header(); ?>
          <section id="contact">
             <div class="half-width">
 				<h2>Questions?</h2>
-				<h2>			<img src="http://localhost:8888/andy_robson_design/wp-content/uploads/2016/11/Envelope.png" id="contact-img" alt="Contact image" />Contact me!</h2>
+				<h2>		<img src="http://localhost:8888/andy_robson_design/wp-content/uploads/2016/11/Envelope.png" id="contact-img" alt="Contact image" /><a class="image" href="<?php echo home_url(); ?>/contact-me">Contact Me</a>
 </div>
 
 

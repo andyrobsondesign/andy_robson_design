@@ -18,12 +18,15 @@ get_header(); ?>
 	$title_1 = get_field('title_1');
 	$title_2 = get_field('title_2');
 	$title_3 = get_field('title_3');
+	$title_4 = get_field('title_4');
 	$icon_1 = get_field('icon_1');
 	$descr_1 = get_field ('descr_1');
 	$descr_2 = get_field ('descr_2');
 	$icon_2 = get_field('icon_2');
 	$desc_3 = get_field ('desc_3');
+	$descr_4 = get_field ('descr_4');
 	$icon_3 = get_field('icon_3');
+	$icon_4 = get_field('icon_4');
 	$size = "medium"; 
 	$contact = get_field('contact'); ?>
 
@@ -58,6 +61,15 @@ get_header(); ?>
 		<p><?php echo $desc_3; ?></p>
 	</div>
 	</div>
+	</section>
+	<section class="research-section">
+		<div class="icon-4 align-right">
+			<?php echo wp_get_attachment_image( $icon_4, $size ); ?>
+		</div>
+		<div class="research">
+			<h2><?php echo $title_4; ?></h2>
+			<p><?php echo $descr_4; ?></p>
+		</div>
 	</section>
 
 	<?php endwhile; //end of the loop /?>
