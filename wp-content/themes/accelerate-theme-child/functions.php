@@ -63,6 +63,19 @@ function create_custom_post_types() {
 	                ), 
 	            )
 	        ); 
+		    register_post_type( 'packages' , 
+		        array (
+		            'labels' => array (
+		                'name' => __( 'Packages' ), 
+		                'singular_name' => __( 'Packages' )
+		                ), 
+		            'public' => true, 
+		            'has_archive' => true,
+		            'rewrite' => array ( 
+		                'slug' => 'packages' 
+		                ), 
+		            )
+		        ); 
 	}
 add_action( 'init', 'create_custom_post_types' ); 
 // Add HTML5 theme support for custom seach form
