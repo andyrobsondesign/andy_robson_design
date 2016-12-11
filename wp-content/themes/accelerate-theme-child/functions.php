@@ -33,6 +33,7 @@ function accelerate_theme_enqueue_styles() {
         array( $parent_style )
     );
 }
+
 add_action( 'wp_enqueue_scripts', 'accelerate_theme_enqueue_styles' );
 // Create custom post types
 function create_custom_post_types() {
@@ -69,6 +70,19 @@ function wpdocs_after_setup_theme() {
     add_theme_support( 'html5', array( 'search-form' ) );
 }
 add_action( 'after_setup_theme', 'wpdocs_after_setup_theme' );
+//custom header
+add_theme_support( 'custom-header' );
+add_action( 'widgets_init', 'accelerate_theme_child_widget_init' );
+$args = array(
+ 'flex-width' => true,
+ 'width' => 1200,
+ 'flex-height' => true,
+ 'height' => 360,
+ 'default-image' => get_template_directory_uri() . '/images/header.jpg',
+);
+add_theme_support( 'custom-header', $args );
+
+
 // Add Twitter Widget
     
 function accelerate_theme_child_widget_init() {
@@ -82,7 +96,7 @@ function accelerate_theme_child_widget_init() {
 	    'before_title' => '<h3 class="widget-title">',
 	    'after_title' => '</h3>',
 	) );
-	
+
 }
-add_action( 'widgets_init', 'accelerate_theme_child_widget_init' );
-?>
+
+
