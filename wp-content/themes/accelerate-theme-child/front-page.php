@@ -71,7 +71,7 @@ get_header(); ?>
 			<br>
 		
 			<div class=package>
-				<p><a class="button" href="<?php echo home_url(); ?>/packages">Packages</a>
+				<p><a class="button" href="<?php echo home_url(); ?>/packages">Services</a>
 			</p></div>
 				
         </section>

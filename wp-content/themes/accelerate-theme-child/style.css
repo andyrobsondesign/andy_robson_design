@@ -118,7 +118,7 @@ header h1 {
 
 nav {
 	float: right;
-	padding: 0px 40px;
+	padding: 0px 0px;
 }
 
 nav ul li {
@@ -191,6 +191,8 @@ img.attachment-thumbnail.size-thumbnail{
 
 
 /******Home*******/ 
+	
+}
 #home h2 {
 	font-family: 'Lora', serif;
 	font-size: 36px;
@@ -209,6 +211,8 @@ img.attachment-thumbnail.size-thumbnail{
 	line-height: 40px;
 	padding-right: 50px;
 }
+
+
 
 /***** ABOUT *****/
 #about {
@@ -435,6 +439,11 @@ img.attachment-thumbnail.size-thumbnail{
 	margin-top: 25px;
 }
 /******BLOG***********/
+.hero-blog {
+    background: url("img/blogheader.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
+    width:100%;
+	height: 360px;
+}
 .entry-title{
 	color:#f9c2c7;
 }
