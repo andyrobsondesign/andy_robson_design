@@ -450,3 +450,9 @@ img.attachment-thumbnail.size-thumbnail{
 .entry-time{
 	color:#f9c2c7;
 }
+/*****SERVICES*******/
+.hero-services {
+    background: url("img/servicesheader.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
+    width:100%;
+	height: 360px;
+}

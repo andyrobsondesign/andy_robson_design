@@ -12,6 +12,8 @@
  * @since Accelerate Marketing 1.0
  */
 get_header(); ?>
+	<section class='hero-services'>
+	</section>
 
 	<div id="primary" class="site-content">
 		<div id="content" role="main">
@@ -25,7 +27,9 @@ get_header(); ?>
 	$size = "medium"; 
 	$contact = get_field('contact'); ?>
 
-<h2><?php the_title(); ?></h2>
+<h2>My Services</h2>
+<br>
+
 	<?php the_content(); ?>
 	<?php endwhile; // end of the loop. ?>
 <div class="site-content">
@@ -70,8 +74,9 @@ get_header(); ?>
 		<p><?php echo $pkg_3_description; ?></p>
 		 	<li>45 minute consultation</li>
 			<li>Branding</li>
+			<li>Strategy</li>
 		 	<li>Install latest version of WordPress</li>
-		 	<li>Customizable WordPress Theme installed</li>
+		 	<li>Customized WordPress Theme installed</li>
 			 <li>Two Customized Page Templates</li>
 		 	<li>Set up Static Homepage/Landing Page</li>
 		 	<li>Set Blog page as Post Page</li>
