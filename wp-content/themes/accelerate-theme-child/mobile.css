@@ -1,0 +1,70 @@
+/*
+ Theme Name:   	Accelerate Theme Child
+ Theme URI:    	http://skillcrush.com/accelerate-theme-child/
+ Description:  		Accelerate Child Theme - Accelerate
+ Author:       		Bobbi Mullins
+ Author URI:   		http://andyrobsondesign.com
+ Template:     		accelerate-theme
+ Version:      		1.0.0
+ Tags:         		light, dark, two-columns, right-sidebar, responsive-layout, accessibility-ready
+ Text Domain:  	accelerate-theme-child
+*/
+
+	/* MEDIA QUERIES */
+
+
+	@media only screen and (min-width: 350px; max-width: 480px) {
+		.body{
+			background:orchid;
+		}
+		.full-width {
+			width:100%;
+			height:auto;
+			margin: 0 auto;
+		}
+
+		.half-width {
+			width:50%;
+			margin-top: 25px;
+		}
+
+		.third-width {
+			width:25%;
+		}
+
+		.site-title {
+			font-size: 22px;
+		}
+	
+	img{
+		max-width:100%;
+		height:auto;
+	}
+	#skills h3 {
+		width:100%;
+		height:auto;
+		font-family: 'heroregular';
+		font-size: 22px;
+		color: #2b2b2b;
+		text align:center;
+	}
+
+
+	li.skills {
+		display: compact;
+		padding:2px;
+
+	}
+	
+	.about, #about{
+		background-color: #f9c2c7;
+		text-align: center;
+		height: auto;
+		width:100%
+	}
+
+	.packages{
+		width:100%;
+	}
+	
+	

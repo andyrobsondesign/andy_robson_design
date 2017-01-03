@@ -56,6 +56,7 @@ function mashsbGetShareObj( $url ) {
         }
 
         //mashdebug()->info( 'mashsbGetShareObj() url: ' . $url );
+        MASHSB()->logger->info( 'mashsbGetShareObj() url: ' . $url );
         $mashsbSharesObj = new mashengine( $url );
         return $mashsbSharesObj;
 
@@ -143,6 +144,8 @@ function mashsbGetNonPostShares( $url ) {
 
 function getSharedcount( $url ) {
     global $mashsb_options, $post, $mashsb_sharecount, $mashsb_error; // todo test a global share count var if it reduces the amount of requests
+    
+    $mashsb_error[] = 'MashShare: Trying to get share count!';
         
     // Return global share count variable to prevent multiple execution
     if (is_array($mashsb_sharecount) && array_key_exists($url, $mashsb_sharecount) && !empty($mashsb_sharecount[$url]) && !mashsb_is_cache_refresh() ){
@@ -165,6 +168,7 @@ function getSharedcount( $url ) {
 
        
     if( is_404() || is_search() || empty($url) || !mashsb_is_enabled_permalinks() || isset($mashsb_options['disable_sharecount']) ) {
+        $mashsb_error[] = 'MashShare: Trying to get share count deactivated';
         return apply_filters( 'filter_get_sharedcount', 0 );
     }
 
@@ -175,6 +179,7 @@ function getSharedcount( $url ) {
 
 
     if( !empty( $url ) && is_null( $post ) ) {
+        $mashsb_error[] = 'MashShare: URL or POST is empty. Return share count with mashsbGetNonPostShares';
         return apply_filters( 'filter_get_sharedcount', mashsbGetNonPostShares( $url ) );
     }
 
@@ -183,8 +188,11 @@ function getSharedcount( $url ) {
      */
     if( mashsb_force_cache_refresh() && is_singular() ) {
         
+        $mashsb_error[] = 'MashShare: Force Cache Refresh on singular()';
+        
         // Its request limited
         if ( mashsb_is_req_limited() ){ 
+            $mashsb_error[] = 'MashShare: rate limit reached. Return Share from custom meta option';
             return get_post_meta( $post->ID, 'mashsb_shares', true ) + getFakecount();
         }
 
@@ -194,8 +202,8 @@ function getSharedcount( $url ) {
         // Write timestamp (Use this on top of this condition. If this is not on top following return statements will be skipped and ignored - possible bug?)
         update_post_meta( $post->ID, 'mashsb_timestamp', time() );
 
-        MASHSB()->logger->info( 'Refresh Cache: Update Timestamp: ' . time() );
-
+        MASHSB()->logger->info( 'Code:4 Refresh Cache: Update Timestamp: ' . time() );
+        $mashsb_error[] = 'Code:4 Refresh Cache: Update Timestamp: ' . time();
         // Get the share Object
         $mashsbSharesObj = mashsbGetShareObj( $url );
         // Get the share count Method
@@ -205,12 +213,14 @@ function getSharedcount( $url ) {
 
         // Create global sharecount
         $mashsb_sharecount = array($url => $mashsbShareCounts->total);
+        
+        $mashsb_error[] = 'Code: 5 Get Share count for URL: ' . $url . ' Shares: ' . $mashsbShareCounts->total;
+        MASHSB()->logger->info( 'Code: 5 Get Share count for URL: ' . $url . ' Shares: ' . $mashsbShareCounts->total );
         /*
          * Update post_meta only when API is requested and
          * API share count is greater than real fresh requested share count ->
          */
         
-        //wp_die('error' . $mashsbShareCounts->error);
         if( $mashsbShareCounts->total >= $mashsbStoredShareCount ) {
             update_post_meta( $post->ID, 'mashsb_shares', $mashsbShareCounts->total );
             update_post_meta( $post->ID, 'mashsb_jsonshares', json_encode( $mashsbShareCounts ) );
@@ -226,6 +236,7 @@ function getSharedcount( $url ) {
         // Return cached results
         $cachedCountsMeta = get_post_meta( $post->ID, 'mashsb_shares', true );
         $cachedCounts = $cachedCountsMeta + getFakecount();
+        $mashsb_error[] = 'Cached Results: ' . $cachedCounts . ' url:' . $url;
         MASHSB()->logger->info( 'Cached Results: ' . $cachedCounts . ' url:' . $url );
         return apply_filters( 'filter_get_sharedcount', $cachedCounts );
     }
@@ -393,9 +404,11 @@ function arrNetworks( $name, $is_shortcode ) {
 function mashsb_getNetworks( $is_shortcode = false, $services = 0 ) {
     global $mashsb_options, $mashsb_custom_url, $enablednetworks, $mashsb_twitter_url;
     
+    
     // define globals
     if( $is_shortcode ) {
         $mashsb_twitter_url = !empty( $mashsb_custom_url ) ? mashsb_get_shorturl( $mashsb_custom_url ) : mashsb_get_twitter_url();
+
     }else{
         $mashsb_twitter_url = mashsb_get_twitter_url();
     }
@@ -724,12 +737,11 @@ function mashshare_filter_content( $content ) {
     $excluded = isset( $mashsb_options['excluded_from'] ) ? $mashsb_options['excluded_from'] : null;
     $singular = isset( $mashsb_options['singular'] ) ? $singular = true : $singular = false;
 
-    /*
-     * Deprecated because of Ticket# https://github.com/mashshare/Mashshare/issues/24
-     * if( !is_main_query() ) {
+    
+    if( isset($mashsb_options['is_main_query']) && !is_main_query() ) {
         return $content;
-    }*/
-
+    }
+     
     if( mashsb_is_excluded() ){
         return $content;
     }

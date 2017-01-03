@@ -9,7 +9,7 @@ License URI: http://www.gnu.org/licenses/gpl-2.0.html
 Tags: Share buttons, Social Sharing, social media, Facebook, Twitter, Subscribe, Traffic posts, pages, widget, social share buttons, analytics, email
 Requires at least: 3.6+
 Tested up to: 4.7
-Stable tag: 3.3.4
+Stable tag: 3.3.6
 
 Social Media Share Buttons for Twitter, Facebook and other social networks. Highly customizable Social Media ecosystem
 
@@ -315,6 +315,28 @@ Read here more FAQ: [https://www.mashshare.net/faq/](https://www.mashshare.net/f
 
 
 == Changelog ==
+
+= 3.3.6 =
+* Fix: Custom CSS field not working since 3.3.5
+
+
+= 3.3.5 =
+
+* New: Add new Facebook Access Token to bypass the rate limit issue
+* New: Add filter 'mashsb_hide_addons' to hide add-on related sections
+* New: Add new option to hide buttons when they appear in widgets or not in main query (is_main_query conditions)
+* New: Add French language
+* New: Add Arabic language
+* New: Add Dutch language
+* New: Add Brazil language
+* New: Add Indonesia language
+
+* Fix: Do not remove backslash from custom css
+* Fix: Change general admin class panel-container to a more unique one
+* Fix: Check if image exists before detecting image size for twitter image
+* Fix: Twitter shortcode custom url value is ignored
+* Fix: Rate Limit Notice not working
+* Fix: Undefined var is_main_query
 
 = 3.3.4 =
 * Fix: Disabling share count still makes requests to facebook and co. Important fix to resolve facebook rate limit issues which result in stuck share count

@@ -240,9 +240,15 @@ function mashsb_get_registered_settings() {
                     'desc' => sprintf( __( 'Allow Mashshare to track plugin usage? Opt-in to tracking and our newsletter and immediately be emailed a <strong>20%% discount to the Mashshare shop</strong>, valid towards the <a href="%s" target="_blank">purchase of Add-Ons</a>. No sensitive data is tracked.', 'mashsb' ), 'https://www.mashshare.net/add-ons/?utm_source=' . substr( md5( get_bloginfo( 'name' ) ), 0, 10 ) . '&utm_medium=admin&utm_term=setting&utm_campaign=MASHSBUsageTracking' ),
                     'type' => 'checkbox'
                 ),
+                'is_main_query' => array(
+                    'id' => 'is_main_query',
+                    'name' => __( 'Hide Buttons in Widgets (is_main_query)', 'mashsb' ),
+                    'desc' => __( 'If Share Buttons are shown in widgets enable this option. For devs: This uses the is_main_query condition. ' ) ,
+                    'type' => 'checkbox'
+                ),
                 "user_roles_for_sharing_options" => array(
                     "id"            => "user_roles_for_sharing_options",
-                    "name"          => __("Meta Box Permission", "mashsb"),
+                    "name"          => __("Show Share Options Meta Box", "mashsb"),
                     "desc"          => __("Select user roles which can only see MashShare Social Sharing Meta Box Options on posts and pages edit screen and User Meta Box on user profiles. If nothing is set meta boxes are shown for all user roles", "mashsb"),
                     "type"          => "multiselect",
                     "options"       => mashsb_get_user_roles(),
@@ -254,6 +260,13 @@ function mashsb_get_registered_settings() {
                     'name' => '<strong>' . __( 'Networks', 'mashsb' ) . '</strong>',
                     'desc' => '',
                     'type' => 'header'
+                ),
+                array(
+                'id' => 'fb_access_token_new',
+                'name' => __( 'Facebook User Access Token', 'mashsb' ),
+                'desc' => sprintf( __( 'Required if your website hits the facebook rate limit of 200 calls per hour. <a href="%s" target="_blank">Read here</a> how to get the access token.', 'mashsb' ), 'http://docs.mashshare.net/article/132-how-to-create-a-facebook-access-token' ),
+                'type' => 'fboauth',
+                'size' => 'large'
                 ),
                 array(
                     'id' => 'fb_publisher_url',
@@ -274,13 +287,6 @@ function mashsb_get_registered_settings() {
 //                    'name' => __( 'Facebook App Secret', 'mashsb' ),
 //                    'desc' => sprintf( __( 'Required for getting accurate facebook share numbers. Where do i find the facebook APP Secret?', 'mashsb' ), 'https://developers.facebook.com/docs/apps/register' ),
 //                    'type' => 'text',
-//                    'size' => 'medium'
-//                ),
-//                array(
-//                    'id' => 'fb_access_token',
-//                    'name' => __( 'Facebook Access Token', 'mashsb' ),
-//                    'desc' => __( 'Required for getting accurate facebook share numbers! Connecting with facebook increases the facebook API call rate limit to 200 calls per hour. This is enough for even huge websites with a lot of traffic as MashShare is caching the calls.', 'mashsb' ),
-//                    'type' => 'fboauth',
 //                    'size' => 'medium'
 //                ),
                 'mashsharer_hashtag' => array(
@@ -566,14 +572,7 @@ So the MashShare open graph data will be containing the same social meta data th
                         ),
                     )
                 ),
-                /* 'custom_css' => array(
-                  'id' => 'custom_css',
-                  'name' => __( 'Custom CSS', 'mashsb' ),
-                  'desc' => __( '<br>Use Mashshare custom styles here', 'mashsb' ),
-                  'type' => 'textarea',
-                  'size' => 15
 
-                  ), */
                 'location_header' => array(
                     'id' => 'location_header',
                     'name' => '<strong>' . __( 'Position', 'mashsb' ) . '</strong>',
@@ -673,7 +672,7 @@ So the MashShare open graph data will be containing the same social meta data th
                 'delete_cache_objects' => array(
                     'id' => 'delete_cache_objects',
                     'name' => __( 'Attention: Purge DB Cache', 'mashsb' ),
-                    'desc' => __( '<strong>Note: </strong>Use this with caution only when you think your share counts are totally wrong. <strong>This will delete all your twitter counts. They can not be restored!</strong> Checking this and using the save button will delete all stored mashshare post_meta objects.<br>' . mashsb_delete_cache_objects(), 'mashsb' ),
+                    'desc' => __( '<strong>Note: </strong>Use this with caution. <strong>This will delete all your twitter counts. They can not be restored!</strong> Activating this option will delete all stored mashshare post_meta objects.<br>' . mashsb_delete_cache_objects(), 'mashsb' ),
                     'type' => 'checkbox'
                 ),
                 'debug_mode' => array(
@@ -789,7 +788,6 @@ function mashsb_settings_sanitize( $input = array() ) {
 function mashsb_sanitize_text_field( $input ) {
     return trim( $input );
 }
-
 add_filter( 'mashsb_settings_sanitize_text', 'mashsb_sanitize_text_field' );
 
 /**
@@ -820,8 +818,10 @@ function mashsb_get_settings_tabs() {
     if( !empty( $settings['licenses'] ) ) {
         $tabs['licenses'] = __( 'Licenses', 'mashsb' );
     }
+    if (false === mashsb_hide_addons()){
     $tabs['addons'] = __( 'Get More Add-Ons', 'mashsb' );
-
+    }
+    
     //$tabs['misc']      = __( 'Misc', 'mashsb' );
 
     return apply_filters( 'mashsb_settings_tabs', $tabs );
@@ -1045,6 +1045,31 @@ function mashsb_textarea_callback( $args ) {
 
     echo $html;
 }
+/**
+ * Custom CSS Callback
+ *
+ * Renders textarea fields.
+ *
+ * @since 1.0
+ * @param array $args Arguments passed by the setting
+ * @global $mashsb_options Array of all the MASHSB Options
+ * @deprecated 3.3.6
+ * @return void
+ */
+//function mashsb_customcss_callback( $args ) {
+//    global $mashsb_options;
+//
+//    if( isset( $mashsb_options[$args['id']] ) )
+//        $value = $mashsb_options[$args['id']];
+//    else
+//        $value = isset( $args['std'] ) ? $args['std'] : '';
+//
+//    $size = ( isset( $args['size'] ) && !is_null( $args['size'] ) ) ? $args['size'] : '40';
+//    $html = '<textarea class="large-text mashsb-textarea" cols="50" rows="' . $size . '" id="mashsb_settings[' . $args['id'] . ']" name="mashsb_settings[' . $args['id'] . ']">' . esc_textarea( $value ) . '</textarea>';
+//    $html .= '<label class="mashsb_hidden" for="mashsb_settings[' . $args['id'] . ']"> ' . $args['desc'] . '</label>';
+//
+//    echo $html;
+//}
 
 /**
  * Password Callback
@@ -1648,7 +1673,7 @@ function mashsb_add_content_callback( $args ) {
     $html .= '<div class="mashtab-container">';
     foreach ( $args['options'] as $option => $name ) :
         $value = isset( $mashsb_options[$name['id']] ) ? $mashsb_options[$name['id']] : '';
-        $textarea = '<textarea class="large-text mashsb-textarea" cols="50" rows="15" id="mashsb_settings[' . $name['id'] . ']" name="mashsb_settings[' . $name['id'] . ']">' . esc_textarea( stripslashes( $value ) ) . '</textarea>';
+        $textarea = '<textarea class="large-text mashsb-textarea" cols="50" rows="15" id="mashsb_settings[' . $name['id'] . ']" name="mashsb_settings[' . $name['id'] . ']">' . esc_textarea( $value ) . '</textarea>';
         $html .= '<div id="' . $name['id'] . '" style="max-width:500px;"><span style="padding-top:60px;display:block;">' . $name['desc'] . '</span><br>' . $textarea . '</div>';
     endforeach;
     $html .= '</div>';
@@ -1847,8 +1872,10 @@ function mashsb_get_user_roles() {
     return $roles;
 }
 
-/*
- * 
+/**
+ * Render Button for oauth authentication and access token generation
+ * @global $mashsb_options $mashsb_options
+ * @param type $args
  */
 function mashsb_fboauth_callback( $args ) {
     global $mashsb_options;
@@ -1865,13 +1892,10 @@ function mashsb_fboauth_callback( $args ) {
         $expire = '';
     }
     
-    $button_label = empty($mashsb_options[$args['id']]) ? __('Get Access Token | Facebook Login', 'mashsb') : __('Renew Access Token', 'mashsb');
+    $button_label = __('Verify Access Token', 'mashsb');
 
-    $auth_url = 'https://www.mashshare.net/oauth/login.html'; // production
-
-    $html = '<a href="'.$auth_url.'" id="mashsb_fb_auth" class="button button-primary">'.$button_label.'</a>';
-    //$html .= empty($mashsb_options[$args['id']]) ? $verify_button : '';
-    $html .= '&nbsp; <input type="text" class="medium-text" id="mashsb_settings[' . $args['id'] . ']" name="mashsb_settings[' . $args['id'] . ']" value="' . esc_attr( stripslashes( $value ) ) . '"/>';
+    $html = '<a href="#" id="mashsb_verify_fbtoken" class="button button-primary">'.$button_label.'</a>';
+    $html .= '&nbsp; <input type="text" class="medium-text" style="width:333px;" id="mashsb_settings[' . $args['id'] . ']" name="mashsb_settings[' . $args['id'] . ']" value="' . esc_attr( stripslashes( $value ) ) . '"/>';
     $html .= '&nbsp; <input type="hidden" class="medium-text" id="mashsb_settings[expire_' . $args['id'] . ']" name="mashsb_settings[expire_' . $args['id'] . ']" value="' . esc_attr( stripslashes( $expire ) ) . '"/>';
     $html .= '<div class="token_status">'
             . '<span id="mashsb_expire_token_status"></span>'
@@ -1881,27 +1905,89 @@ function mashsb_fboauth_callback( $args ) {
 echo $html;
     
 }
+//function mashsb_fboauth_callback( $args ) {
+//    global $mashsb_options;
+//    
+//    if( isset( $mashsb_options[$args['id']] ) ){
+//        $value = $mashsb_options[$args['id']];
+//    }else{        
+//        $value = isset( $args['std'] ) ? $args['std'] : '';
+//    }
+//    // Change expiration date
+//    if( isset( $mashsb_options['expire_'.$args['id']] ) ){
+//        $expire = $mashsb_options['expire_'.$args['id']];
+//    }else{        
+//        $expire = '';
+//    }
+//    
+//    $button_label = empty($mashsb_options[$args['id']]) ? __('Get Access Token | Facebook Login', 'mashsb') : __('Renew Access Token', 'mashsb');
+//
+//    $auth_url = 'https://www.mashshare.net/oauth/login.html'; // production
+//
+//    $html = '<a href="'.$auth_url.'" id="mashsb_fb_auth" class="button button-primary">'.$button_label.'</a>';
+//    //$html .= empty($mashsb_options[$args['id']]) ? $verify_button : '';
+//    $html .= '&nbsp; <input type="text" class="medium-text" id="mashsb_settings[' . $args['id'] . ']" name="mashsb_settings[' . $args['id'] . ']" value="' . esc_attr( stripslashes( $value ) ) . '"/>';
+//    $html .= '&nbsp; <input type="hidden" class="medium-text" id="mashsb_settings[expire_' . $args['id'] . ']" name="mashsb_settings[expire_' . $args['id'] . ']" value="' . esc_attr( stripslashes( $expire ) ) . '"/>';
+//    $html .= '<div class="token_status">'
+//            . '<span id="mashsb_expire_token_status"></span>'
+//            . '<span id="mashsb_token_notice"></span>'
+//            . '</div>';
+//    
+//echo $html;
+//    
+//}
 
-function mashsb_ratelimit_callback(){
-    global $mashsb_options;
-    
-    
-    if (!mashsb_is_admin_page() || !isset($mashsb_options['debug_mode']) || !function_exists('curl_init')){
-        return '';
+/**
+ * Test facebook api and check if site is rate limited
+ * 
+ * @global array $mashsb_options
+ * @return string
+ */
+function mashsb_ratelimit_callback() {
+        global $mashsb_options;
+
+
+        if( !mashsb_is_admin_page() || !isset( $mashsb_options['debug_mode'] ) || !function_exists( 'curl_init' ) ) {
+            return '';
+        }
+        // Test open facebook api endpoint
+        $url = 'http://graph.facebook.com/?id=http://www.google.com';
+        $curl_handle = curl_init();
+        curl_setopt( $curl_handle, CURLOPT_URL, $url );
+        curl_setopt( $curl_handle, CURLOPT_CONNECTTIMEOUT, 2 );
+        curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, 1 );
+        $buffer = curl_exec( $curl_handle );
+        curl_close( $curl_handle );
+        echo '<div style="min-width:500px;"><strong>Testing facebook public API <br><br>Result for google.com: </strong></div>';
+        if( empty( $buffer ) ) {
+            print "Nothing returned from url.<p>";
+        } else {
+            print '<div style="max-width:200px;">' . $buffer . '</div>';
+        }
+        
+        // Test facebook api with access token
+        $url = 'https://graph.facebook.com/v2.7/?id=http://www.google.com&access_token=' . $mashsb_options['fb_access_token_new'];
+        $curl_handle = curl_init();
+        curl_setopt( $curl_handle, CURLOPT_URL, $url );
+        curl_setopt( $curl_handle, CURLOPT_CONNECTTIMEOUT, 2 );
+        curl_setopt( $curl_handle, CURLOPT_RETURNTRANSFER, 1 );
+        $buffer = curl_exec( $curl_handle );
+        curl_close( $curl_handle );
+        echo '<br><strong>Testing facebook API <br>with access token<br><br>Result for google.com: </strong>';
+        if( empty( $buffer ) ) {
+            print "Nothing returned from url.<p>";
+        } else {
+            print '<div style="max-width:200px;">' . $buffer . '</div>';
+        }
+        
+        
     }
-    $url = 'http://graph.facebook.com/?id=http://www.google.com';
-    //$url = 'http://graph.facebook.com/';
-    
-      $curl_handle=curl_init();
-  curl_setopt($curl_handle,CURLOPT_URL,$url);
-  curl_setopt($curl_handle,CURLOPT_CONNECTTIMEOUT,2);
-  curl_setopt($curl_handle,CURLOPT_RETURNTRANSFER,1);
-  $buffer = curl_exec($curl_handle);
-  curl_close($curl_handle);
-  if (empty($buffer)){
-      print "Nothing returned from url.<p>";
-  }
-  else{
-      print '<div style="max-width:200px;">'.$buffer . '</div>';
-  }
+
+    /**
+ * Helper function to determine if adverts and add-on ressources are hidden
+ * 
+ * @return bool
+ */
+function mashsb_hide_addons(){
+    return apply_filters('mashsb_hide_addons', false);
 }

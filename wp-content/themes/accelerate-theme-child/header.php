@@ -20,7 +20,7 @@
 <!--<![endif]-->
 <head>
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
-	<meta name="viewport" content="width=device-width">
+<meta name="viewport" content="width=device-width, initial-scale=1" />
 	<title><?php wp_title( '|', true, 'right' ); ?></title>
 	<link rel="profile" href="http://gmpg.org/xfn/11">
 	<link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
@@ -37,16 +37,48 @@
 	
 </head>
 <body <?php body_class(); ?>>
-<div id="page" class="hfeed site">
-	<header id="masthead" class="site-header" role="banner">
-		<div class="header-main">
-			<h1 class="site-title"><a href="<?php echo esc_url( home_url( '/' ) ); ?>" rel="home"><?php bloginfo( 'name' ); ?></a></h1>
-			<nav id="primary-navigation" class="site-navigation primary-navigation" role="navigation">
-				<?php wp_nav_menu( array( 'theme_location' => 'top-nav', 'menu_class' => 'nav-menu' ) ); ?>
-			</nav>
-			<div class="clearfix"></div>
-		</div>
+     	 <div id="menu_wrap">
+       		<?php $advance_search_checkbox = get_theme_mod('advance_search_box',0);?>
+				<?php if( isset($advance_search_checkbox) && $advance_search_checkbox == 1):?>
+					<div class="social-advance">
+						<div class="search-toggle">
+                			 <div class="search-icon">
+                        <i class="fa fa-search"></i>
+                        <div class="advance-search">
+                            <div class="close">&times;</div>
+                                 <?php get_search_form(); ?>
+                         <div class="overlay-search"> </div> 
+                        </div>
+                    </div> 
+            			</div>
+                 	</div>
+        		<?php endif; ?>
+				
+  				 <?php $advance_social1_checkbox = get_theme_mod('advance_social1_checkbox',1);?>
+			<?php if( isset($advance_social1_checkbox) && $advance_social1_checkbox == 1):?>
+      		<!--social-->    
+            	<?php get_template_part('parts/social','loop'); ?>
+           <?php endif?>      
+     
 
-	</header><!-- #masthead -->
+        <!--MENU STARTS-->
+       			<h3 class="menu"><?php _e( 'Andy Robson Design', 'advance' ); ?></h3>
+       
+       			 <div id="navmenu">
+        
+ 					<?php 
+						wp_nav_menu( array( 
+		
+		  				'container_class' => 'menu-header', 
+		  				'theme_location' => 'primary' 
+		  				) ); 
+		 
+					 ?> 
+        
+    			</div>
+      	</div>
+        <a id="showHere"></a>
+    </div>
+     </div>  
 
 	<div id="main" class="site-main">

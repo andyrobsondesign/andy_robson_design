@@ -171,7 +171,7 @@ function mashsb_options_page() {
         </h2>
         <div id="mashsb_container" class="mashsb_container">
                     <?php getTabHeader( 'mashsb_settings_' . $active_tab, 'mashsb_settings_' . $active_tab ); ?>   
-            <div class="panel-container"> <!-- new //-->
+            <div class="mashsb-panel-container"> <!-- new //-->
                 <form method="post" action="options.php">
                     <?php
                     settings_fields( 'mashsb_settings' );
@@ -189,7 +189,11 @@ function mashsb_options_page() {
             </div> <!-- new //-->
         </div><!-- #tab_container-->
         <div  class="mashsb-sidebar">
-            <?php  echo MASHSB()->template->get_template('sidebar') ?>
+            <?php  
+                if (false === mashsb_hide_addons()){
+                echo MASHSB()->template->get_template('sidebar'); 
+                }
+            ?>
         </div> <!-- #sidebar-->
     </div><!-- .mashsb_admin -->
     <?php
