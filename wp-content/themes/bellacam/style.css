@@ -1,0 +1,264 @@
+/*
+Theme Name: bellacam
+Theme URI: http://www.andyrobsondesign.com
+Description: Designed by andyrobsondesign
+Author: Andy Robson Design
+Version: 1.0.0
+Template: genesis
+Tags: the child of genesis
+*/
+@import url('../genesis/style.css');
+
+.home-page {
+	background: url("img/hero-header.png") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
+	height: 600px;
+	background-size: cover;
+}
+.slide-inner {
+	position: absolute;
+	top: 50%;
+	left: 0;
+	right: 0;
+	text-align: center;
+	z-index: 2;
+	width: 100%;
+	min-height: 260px;
+	padding-top: 5px;
+	-webkit-transform: translateY(-50%);
+	-moz-transform: translateY(-50%);
+	-ms-transform: translateY(-50%);
+	-o-transform: translateY(-50%);
+	transform: translateY(-50%);
+}
+.header-slider {
+	overflow: hidden;
+}
+.button {
+    background: none repeat scroll 0 0 #f9c2c7;
+    font-weight: bold;
+	border:dotted;
+	align:center;
+}
+	.slide-inner{
+	  margin-top: 100px;
+	}  
+
+
+	.slide-inner .contain{
+	  padding-bottom: 200px;
+	}
+	.btn-menu {
+		float: right;
+		font-size: 28px;
+		font-family: "FontAwesome";
+		color: #fff;
+		text-align:center;
+		width: 28px;
+		height: 28px;
+		cursor: pointer;
+		-webkit-transition: all 0.3s ease-out;
+		   -moz-transition: all 0.3s ease-out;
+		    -ms-transition: all 0.3s ease-out;
+		     -o-transition: all 0.3s ease-out;
+		        transition: all 0.3s ease-out;
+	}
+	.btn-menu:before{
+		content: "\f0c9";
+	}
+	.btn-submenu {
+		position: absolute;
+		right: 20px;
+		top: 0;
+		font-family: "FontAwesome";
+		font-size: 20px;
+		line-height: 45px;
+		text-align: center;
+		cursor: pointer;
+		width: 70px;
+		height: 44px;
+	}
+	.btn-submenu:before {
+		content: "\f107";
+		color: #fff;
+	}
+	.btn-submenu.active:before {
+		content: "\f106"
+	}
+	.btn-menu {
+		display: none
+	}
+}
+/*#masthead.site-header{
+	background:none repeat scroll 0 0 #f9c2c7;
+	font-family: 'heroregular';
+}
+*/
+body {
+	background: url("img/bg.jpg")repeat scroll left center / cover rgba(0, 0, 0, 0);
+	background size:100%;
+	font-family: 'heroregular';
+	font-size:18px;
+	max-width:100%;
+	height:100%;
+}
+
+
+/********************
+Top Nav Menu 
+*********************/
+
+#navmenu {} .nav-header {
+    margin: auto;
+    padding: 0;
+    display: block;
+}
+#navmenu ul {
+    margin: 0px;
+    padding: 0px;
+}
+#navmenu ul li {
+    list-style-type: none;
+    display: inline-block;
+    position: relative;
+    margin-top: 0px;
+}
+#navmenu li a {
+    font-size: 14px;
+    color: #f9c2c7;
+    font-weight: bold;
+    transition: .5s;
+    padding: 1.2rem .8rem;
+    line-height: normal;
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+}
+#navmenu li a:hover {
+    color: #D03232
+}
+#menu_wrap2 #navmenu li a {
+    font-size: 14px;
+    color: #000;
+    font-weight: 500;
+}
+/* Effect 4: bottom border enlarge */
+
+#navmenu ul {
+    padding: 0 0 0px;
+}
+#navmenu ul > li::after {
+    position: absolute;
+    bottom: 100%;
+    content: '';
+    display: block;
+    width: 0;
+    height: 2px;
+    background: #000;
+    transition: width .3s;
+}
+#navmenu ul > li:hover::after,
+#navmenu ul > li:focus::after {
+    width: 100%;
+}
+#navmenu ul >li ul li::after {
+    display: none;
+}
+#navmenu ul li.current-menu-item > a {
+    color: #3590ea;
+}
+.home #navmenu ul li.current-menu-item > a {
+    color: #D03232
+}
+/*SUBMENU*/
+
+#navmenu ul li ul {
+    position: absolute;
+    width: 210px;
+    z-index: 999999;
+    padding-left: 0;
+    margin-left: -40px;
+    display: none;
+    padding-top: 0px;
+    padding-top: 10%;
+}
+
+#navmenu ul li ul li {
+    float: none;
+    margin: 0;
+    text-align: center;
+    background: rgba(51, 51, 51, 0.8) none repeat scroll 0% 0%;
+    display: block;
+    height: auto;
+    padding-top: 0px;
+    padding-right: 0px;
+    padding-bottom: 0px;
+    padding-left: 0px;
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #000;
+}
+#navmenu ul li ul li:hover {
+    background-color: #D03232;
+}
+#navmenu ul > li ul li:hover {
+    color: white;
+    /* Old browsers */
+    
+    background-color: #D03232;
+}
+#navmenu ul li ul li a {
+    width: 100%;
+    margin: 0px;
+    display: block;
+    color: #fff;
+    font-weight: bold;
+    font-size: 14px;
+    padding-top: 15px;
+    padding-right: 5px;
+    padding-bottom: 15px;
+    padding-left: 5px;
+    height: auto;
+}
+#navmenu ul li ul li a:hover {
+    color: #FFF !important;
+}
+#navmenu ul li ul li ul {
+    right: 100%;
+    top: -4px;
+    float: none;
+    background-color: rgba(51, 51, 51, 0.6) none repeat scroll 0% 0%;
+    padding-top: 4px;
+}
+
+.entry-footer {
+  clear: both;
+}
+nav {
+	float: right;
+	padding: 0px 0px;
+}
+
+nav ul li {
+	display: inline-block;
+}
+
+nav ul li a {
+	text-transform: uppercase;
+	text-decoration: none;
+	font-size: 18px;
+	color: #828282;
+	padding-left: 80px;
+}
+
+header h2 {
+	width: 1000px;
+	clear: both;
+	font-family: 'heroregular'; 
+	font-size: 72px;
+	line-height: 80px;
+	color: #9b9b9b;
+	padding: 20px 0;
+}
+
+header h2 span {
+	color: #2b2b2b;
+}

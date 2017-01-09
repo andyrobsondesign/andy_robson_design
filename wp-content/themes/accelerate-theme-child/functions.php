@@ -33,6 +33,31 @@ function accelerate_theme_enqueue_styles() {
         array( $parent_style )
     );
 }
+// Post thumbnails support
+add_theme_support('post-thumbnails');
+
+
+// defines custom markup for post comments
+function accelerated_theme_child_comments($comment, $args, $depth) {
+	$comment  = '<li class="comment">';
+	$comment .=	'<header class="comment-head">';
+	$comment .= '<span class="comment-author">' . get_comment_author() . '</span>';
+	$comment .= '<span class="comment-meta">' . get_comment_date('m/d/Y') . '&emsp;|&emsp;' . get_comment_reply_link(array('depth' => $depth, 'max_depth' => 5)) . '</span>';
+	$comment .= '</header>';
+	$comment .= '<div class="comment-body">';
+	$comment .= '<p>' . get_comment_text() . '</p>';
+	$comment .= '</div>';
+	$comment .= '</li>';
+
+	echo $comment;
+}
+
+// changes excerpt symbol
+function custom_excerpt_more($more) {
+	return '...';
+}
+add_filter('excerpt_more', 'custom_excerpt_more');
+
 
 add_action( 'wp_enqueue_scripts', 'accelerate_theme_enqueue_styles' );
 // Create custom post types
@@ -85,7 +110,8 @@ function wpdocs_after_setup_theme() {
 add_action( 'after_setup_theme', 'wpdocs_after_setup_theme' );
 //custom header
 add_theme_support( 'custom-header' );
-add_action( 'widgets_init', 'accelerate_theme_child_widget_init' );
+add_action( 'widgets_init', 'accelerate_
+	theme_child_widget_init' );
 $args = array(
  'flex-width' => true,
  'width' => 1200,
@@ -111,5 +137,13 @@ function accelerate_theme_child_widget_init() {
 	) );
 
 }
+if ( function_exists( 'add_theme_support' ) ) {
+    add_theme_support( 'post-thumbnails' );
+    set_post_thumbnail_size( 150, 150, true ); // default Featured Image dimensions (cropped)
+ 
+    // additional image sizes
+    // delete the next line if you do not need additional image sizes
+    add_image_size( 'category-thumb', 300, 9999 ); // 300 pixels wide (and unlimited height)
+ }
 
 
