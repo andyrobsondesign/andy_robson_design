@@ -1,441 +1,274 @@
 <?php
-/* ==========================================================================
- * Theme Setup
- * ========================================================================== */
+/**
+ * Create functions and definitions
+ *
+ * @package Create
+ */
 
-//* Start the engine
-//include_once( get_template_directory() . '/lib/init.php' );
-
-//* Setup Theme
-//include_once( get_stylesheet_directory() . '/lib/theme-defaults.php' );
-
-//* Page Header
-//include_once( get_stylesheet_directory() . '/lib/page-header.php' );
-
-//* Testimonials
-//include_once( get_stylesheet_directory() . '/lib/testimonials.php' );
-//include_once( get_stylesheet_directory() . '/lib/widget-testimonials.php' );
-
-//* Team
-//include_once( get_stylesheet_directory() . '/lib/team.php' );
-//include_once( get_stylesheet_directory() . '/lib/widget-team.php' );
-
-//* Add Image upload and Color select to WordPress Theme Customizer
-//require_once( get_stylesheet_directory() . '/lib/customize.php' );
-
-//* Include Customizer CSS
-//include_once( get_stylesheet_directory() . '/lib/output.php' );
-
-//* Child theme (do not remove)
-define( 'CHILD_THEME_NAME', 'Create' );
-define( 'CHILD_THEME_URL', 'http://www.andyrobsondesign.com' );
-define( 'CHILD_THEME_VERSION', '1.0.0' );
-
-//* Enqueue scripts and styles
-add_action( 'wp_enqueue_scripts', 'create_scripts_styles' );
-function create_scripts_styles() {
-
-	wp_enqueue_style( 'google-fonts', '//fonts.googleapis.com/css?family=Hind:400,300,500,600,700', array(), CHILD_THEME_VERSION );
-	wp_enqueue_style( 'ionicons', '//code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css', array(), CHILD_THEME_VERSION );
-
-	wp_enqueue_script( 'create-fitvids', get_stylesheet_directory_uri() . '/js/jquery.fitvids.js', array(), CHILD_THEME_VERSION );
-    wp_enqueue_script( 'create-global', get_stylesheet_directory_uri() . '/js/global.js', array(), CHILD_THEME_VERSION );
-	wp_enqueue_script( 'create-responsive-menu', get_stylesheet_directory_uri() . '/js/responsive-menu.js', array(), CHILD_THEME_VERSION );
-
-	if ( is_front_page() ) {
-		wp_enqueue_style( 'bxslider', get_stylesheet_directory_uri() . '/css/bxslider.css' );
-		wp_enqueue_script( 'create-bxslider', get_stylesheet_directory_uri() . '/js/jquery.bxslider.min.js', array(), CHILD_THEME_VERSION );
-	}
-
+/**
+ * Set the content width based on the theme's design and stylesheet.
+ */
+if ( ! isset( $content_width ) ) {
+	$content_width = 650; /* pixels */
 }
 
-//* Add HTML5 markup structure
-add_theme_support( 'html5', array( 'search-form', 'comment-form', 'comment-list', 'gallery', 'caption' ) );
+if ( ! function_exists( 'create_setup' ) ) :
+/**
+ * Sets up theme defaults and registers support for various WordPress features.
+ *
+ * Note that this function is hooked into the after_setup_theme hook, which
+ * runs before the init hook. The init hook is too late for some features, such
+ * as indicating support for post thumbnails.
+ */
+function create_setup() {
 
-//* Add accessibility support
-add_theme_support( 'genesis-accessibility', array( '404-page', 'drop-down-menu', 'headings', 'search-form', 'skip-links' ) );
+	/*
+	 * Make theme available for translation.
+	 * Translations can be filed in the /languages/ directory.
+	 * If you're building a theme based on Create, use a find and replace
+	 * to change 'create' to the name of your theme in all the template files
+	 */
+	load_theme_textdomain( 'create', get_template_directory() . '/languages' );
 
-add_theme_support( 'genesis-structural-wraps', array(
-	'header',
-	'subnav',
-	'site-inner',
-	'footer-widgets',
-	'footer'
-) );
+	// Create styles the visual editor to resemble the theme style.
+	add_editor_style( array( 'css/editor-style.css', create_fonts_url() ) );
 
-//* Add screen reader class to archive description
-add_filter( 'genesis_attr_author-archive-description', 'genesis_attributes_screen_reader_class' );
+	// Add default posts and comments RSS feed links to head.
+	add_theme_support( 'automatic-feed-links' );
 
-//* Add viewport meta tag for mobile browsers
-add_theme_support( 'genesis-responsive-viewport' );
+	/*
+	 * Enable support for Post Thumbnails on posts and pages.
+	 *
+	 * @link http://codex.wordpress.org/Function_Reference/add_theme_support#Post_Thumbnails
+	 */
+	add_theme_support( 'post-thumbnails' );
 
-/* ==========================================================================
- * Header
- * ========================================================================== */
-/* Add opening markup for the Page Header*/
-$header_color = get_option( 'create_header_color', 'false' );
-if ( $header_color === 'white' ) {
-	add_action( 'genesis_after_header', 'create_opening_page_header', 8 );
-} else {
-	add_action( 'genesis_before_header', 'create_opening_page_header' );
-}
-//* Add support for custom header*/
-add_theme_support( 'custom-header', array(
-	'width'           => 400,
-	'height'          => 150,
-	'header-selector' => '.site-title a',
-	'header-text'     => false,
-	'flex-height'     => true,
-) );
+	// Set default size.
+	set_post_thumbnail_size( 650, 488, true );
 
-//* Assign the correct class for white or transparent header
-$header_color = get_option( 'create_header_color', 'true' );
-if ( $header_color === 'white' ) {
+	// Add default size for single pages.
+	add_image_size( 'create-single', '650', '9999', false );
 
-	add_filter( 'body_class', 'create_header_color_class' );
-	function create_header_color_class( $classes ) {
+	// Add default size for homepage.
+	add_image_size( 'create-home', '261', '196', true );
 
-		$classes[] = 'white-header';
-		return $classes;
+	// Add default size for homepage.
+	add_image_size( 'create-header', '1024', '350', true );
 
-	}
-}
+	// Add default logo size for Jetpack.
+	add_image_size( 'create-site-logo', '300', '9999', false );
 
-//* Add Image Sizes
-add_image_size( 'create_featured_posts', 600, 400, TRUE );
-add_image_size( 'create_archive', 900, 500, TRUE );
-add_image_size( 'create_team_thumb', 600, 800, TRUE );
-add_image_size( 'create_hero', 1920, 960, TRUE );
+	// This theme uses wp_nav_menu() in two locations.
+	register_nav_menus( array(
+		'primary' => __( 'Primary Menu', 'create' ),
+		'social'  => __( 'Social Menu', 'create' ),
+	) );
 
+	/*
+	 * Switch default core markup for search form, comment form, and comments
+	 * to output valid HTML5.
+	 */
+	add_theme_support( 'html5', array(
+		'search-form', 'comment-form', 'comment-list', 'gallery', 'caption',
+	) );
 
-/* ==========================================================================
- * Navigation
- * ========================================================================== */
+	/*
+	 * Enable support for Post Formats.
+	 * See http://codex.wordpress.org/Post_Formats
+	 */
+	add_theme_support( 'post-formats', array(
+		'aside', 'image', 'video', 'quote', 'link',
+	) );
 
-//* Rename primary and secondary navigation menus
-add_theme_support ( 'genesis-menus' , array ( 'primary' => __( 'Header Menu', 'create' ), 'secondary' => __( 'Page Header Menu', 'create' ) ) );
+	// Set up the WordPress core custom background feature.
+	add_theme_support( 'custom-background', apply_filters( 'create_custom_background_args', array(
+		'default-color'       => 'f5f5f5',
+		'default-attachment'  => 'fixed',
+		'default-repeat'      => 'no-repeat',
+		'default-image'       => '%s/images/default-background.jpg',
+	) ) );
 
-//* Reposition primary navigation menu
-remove_action( 'genesis_after_header', 'genesis_do_nav' );
-add_action( 'genesis_header', 'genesis_do_nav', 12 );
+	/**
+	 * Setup title support for theme
+	 * Supported from WordPress version 4.1 onwards
+	 * More Info: https://make.wordpress.org/core/2014/10/29/title-tags-in-4-1/
+	 */
+	add_theme_support( 'title-tag' );
 
-//* Remove output of primary navigation right extras
-remove_filter( 'genesis_nav_items', 'genesis_nav_right', 10, 2 );
-remove_filter( 'wp_nav_menu_items', 'genesis_nav_right', 10, 2 );
-
-//* Remove secondary navigation menu, it's added back in the /lib/page-header.php
-remove_action( 'genesis_after_header', 'genesis_do_subnav' );
-
-//* Reduce secondary navigation menu to one level depth
-add_filter( 'wp_nav_menu_args', 'create_secondary_menu_args' );
-function create_secondary_menu_args( $args ){
-
-	if( 'secondary' != $args['theme_location'] )
-	return $args;
-
-	$args['depth'] = 1;
-	return $args;
-
-}
-
-//* Remove navigation meta box
-add_action( 'genesis_theme_settings_metaboxes', 'create_remove_genesis_metaboxes' );
-function create_remove_genesis_metaboxes( $_genesis_theme_settings_pagehook ) {
-
-    remove_meta_box( 'genesis-theme-settings-nav', $_genesis_theme_settings_pagehook, 'main' );
-
-}
-
-/* ==========================================================================
- * Widget Areas
- * ========================================================================== */
-
-//* Add support for after entry widget
-add_theme_support( 'genesis-after-entry-widget-area' );
-
-//* Add support for shortcodes in widget areas
-add_filter('widget_text', 'do_shortcode');
-
-//* Remove header right widget area
-unregister_sidebar( 'header-right' );
-
-//* Remove secondary sidebar
-unregister_sidebar( 'sidebar-alt' );
-
-//* Remove site layouts
-//genesis_unregister_layout( 'content-sidebar-sidebar' );
-//genesis_unregister_layout( 'sidebar-content-sidebar' );
-//genesis_unregister_layout( 'sidebar-sidebar-content' );
-
-//* Setup widget counts
-function create_count_widgets( $id ) {
-
-	global $sidebars_widgets;
-
-	if ( isset( $sidebars_widgets[ $id ] ) ) {
-		return count( $sidebars_widgets[ $id ] );
-	}
-
-}
-
-//* Flexible widget classes
-function create_widget_area_class( $id ) {
-
-	$count = create_count_widgets( $id );
-
-	$class = '';
-
-	if( $count == 1 ) {
-		$class .= ' widget-full';
-	} elseif( $count % 3 == 1 ) {
-		$class .= ' widget-thirds';
-	} elseif( $count % 4 == 1 ) {
-		$class .= ' widget-fourths';
-	} elseif( $count % 2 == 0 ) {
-		$class .= ' widget-halves uneven';
-	} else {
-		$class .= ' widget-halves even';
-	}
-	return $class;
-
-}
-
-//* Flexible widget classes
-function create_halves_widget_area_class( $id ) {
-
-	$count = create_count_widgets( $id );
-
-	$class = '';
-
-	if( $count == 1 ) {
-		$class .= ' widget-full';
-	} elseif( $count % 2 == 0 ) {
-		$class .= ' widget-halves';
-	} else {
-		$class .= ' widget-halves uneven';
-	}
-	return $class;
-
-}
-
-//* Register widget areas
-//genesis_register_sidebar( array(
-	//'id'          => 'front-page-hero',
-	//'name'        => __( 'Front Page Hero', 'create' ),
-	//'description' => __( 'This is the page header section on the front page.', 'create' ),
-//) );
-//genesis_register_sidebar( array(
-//	'id'          => 'front-page-1',
-//	'name'        => __( 'Front Page 1', 'create' ),
-//	'description' => __( 'This is the 1st section on the front page.', 'create' ),
-//) );
-//genesis_register_sidebar( array(
-//	'id'          => 'front-page-2',
-//	'name'        => __( 'Front Page 2', 'create' ),
-//	'description' => __( 'This is the 2nd section on the front page.', 'create' ),
-//) );
-//genesis_register_sidebar( array(
-//	'id'          => 'front-page-3',
-//	'name'        => __( 'Front Page 3', 'create' ),
-//	'description' => __( 'This is the 3rd section on the front page.', 'create' ),
-//) );
-//genesis_register_sidebar( array(
-//	'id'          => 'front-page-4',
-//	'name'        => __( 'Front Page 4', 'create' ),
-//	'description' => __( 'This is the 4th section on the front page.', 'create' ),
-//) );
-//genesis_register_sidebar( array(
-//	'id'          => 'before-footer',
-//	'name'        => __( 'Before Footer', 'create' ),
-//	'description' => __( 'This is a widget area right before the footer on every page.', 'create' ),
-//) );
-
-//* Add the Before Footer Widget Area
-add_action( 'genesis_before_footer', 'create_before_footer_widget_area', 5 );
-function create_before_footer_widget_area() {
-	if ( is_active_sidebar( 'before-footer' ) ) {
-		genesis_widget_area( 'before-footer', array(
-			'before' => '<div id="before-footer" class="before-footer"><div class="wrap"><div class="widget-area' . create_widget_area_class( 'before-footer' ) . '">',
-			'after'  => '</div></div></div>',
+	//@remove Remove check when WordPress 4.8 is released
+	if ( function_exists( 'has_custom_logo' ) ) {
+		/**
+		* Setup Custom Logo Support for theme
+		* Supported from WordPress version 4.5 onwards
+		* More Info: https://make.wordpress.org/core/2016/03/10/custom-logo/
+		*/
+		add_theme_support( 'custom-logo', array(
+			'height'      => 150,
+			'width'       => 520,
+			'flex-height' => true,
+			'flex-width'  => true
 		) );
 	}
 }
-
-//* Add support for 4-column footer widget
-add_theme_support( 'genesis-footer-widgets', 4 );
-
-
-/* ==========================================================================
- * Blog Related
- * ========================================================================== */
-
-//* Reposition entry meta in entry header
-remove_action( 'genesis_entry_header', 'genesis_post_info', 12 );
-add_action( 'genesis_entry_header', 'genesis_post_info', 8 );
-
-//* Customize entry meta in the entry header
-add_filter( 'genesis_post_info', 'create_entry_meta_header' );
-function create_entry_meta_header($post_info) {
-
-	$post_info = '[post_categories before="" after=" &middot;"] [post_date] [post_edit before=" &middot; "]';
-	return $post_info;
-
-}
-
-//* Customize the content limit more markup
-//add_filter( 'get_the_content_limit', 'create_content_limit_read_more_markup', 10, 3 );
-//function create_content_limit_read_more_markup( $output, $content, $link ) {
-
-//	$output = sprintf( '<p>%s &#x02026;</p><p>%s</p>', $content, str_replace( '&#x02026;', '', $link ) );
-
-//	return $output;
-
-//}
-
-//* Modify the Genesis content limit read more link
-//add_filter( 'get_the_content_more_link', 'create_read_more_link' );
-//function create_read_more_link() {
-//	return '<a class="more-link" href="' . get_permalink() . '">Continue Reading</a>';
-//}
-
-//* Customize author box title
-add_filter( 'genesis_author_box_title', 'create_author_box_title' );
-function create_author_box_title() {
-
-	return '<span itemprop="name">' . get_the_author() . '</span>';
-
-}
-
-//* Modify size of the Gravatar in the author box
-add_filter( 'genesis_author_box_gravatar_size', 'create_author_box_gravatar' );
-function create_author_box_gravatar( $size ) {
-
-	return 160;
-
-}
-
-//* Remove entry meta in the entry footer on category pages
-add_action( 'genesis_before_entry', 'create_remove_entry_footer' );
-function create_remove_entry_footer() {
-
-	if ( is_front_page() || is_archive() || is_search() || is_home() || is_page_template( 'page_blog.php' ) ) {
-
-		remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_open', 5 );
-		remove_action( 'genesis_entry_footer', 'genesis_post_meta' );
-		remove_action( 'genesis_entry_footer', 'genesis_entry_footer_markup_close', 15 );
-
-	}
-
-}
-
-//* Display author box on single posts
-add_filter( 'get_the_author_genesis_author_box_single', '__return_true' );
-
-
-/* ==========================================================================
- * Helper Functions
- * ========================================================================== */
+endif; // create_setup
+add_action( 'after_setup_theme', 'create_setup' );
 
 /**
- * Bar to Line Break
+ * Register widget area.
  *
+ * @link http://codex.wordpress.org/Function_Reference/register_sidebar
  */
-function create_bar_to_br( $content ) {
-	return str_replace( ' | ', '<br class="mobile-hide">', $content );
-}
-// changes excerpt symbol
-function custom_excerpt_more($more) {
-	return '...';
-}
-add_filter('excerpt_more', 'custom_excerpt_more');
-
-
-add_action( 'wp_enqueue_scripts', 'Create_enqueue_styles' );
-// Create custom post types
-function create_custom_post_types() {
-    register_post_type( 'case_studies' , 
-        array (
-            'labels' => array (
-                'name' => __( 'Case Studies' ), 
-                'singular_name' => __( 'Case Study' )
-                ), 
-            'public' => true, 
-            'has_archive' => true,
-            'rewrite' => array ( 
-                'slug' => 'case-studies' 
-                ), 
-				 'supports' => array('title', 'editor', 'thumbnail')
-            )
-        ); 
-	    register_post_type( 'skills' , 
-	        array (
-	            'labels' => array (
-	                'name' => __( '$Skills' ), 
-	                'singular_name' => __( 'Skills' )
-	                ), 
-	            'public' => true, 
-	            'has_archive' => true,
-	            'rewrite' => array ( 
-	                'slug' => 'skills' 
-	                ), 
-					 'supports' => array('title', 'editor', 'thumbnail')
-	            )
-	        ); 
-		    register_post_type( '$packages' , 
-		        array (
-		            'labels' => array (
-		                'name' => __( 'Packages' ), 
-		                'singular_name' => __( 'Packages' )
-		                ), 
-		            'public' => true, 
-		            'has_archive' => true,
-		            'rewrite' => array ( 
-		                'slug' => 'packages' 
-							
-		                ), 
-						 'supports' => array('title', 'editor', 'thumbnail')
-		            )
-		        ); 
-	}
-add_action( 'init', 'create_custom_post_types' ); 
-// Add HTML5 theme support for custom seach form
-function wpdocs_after_setup_theme() {
-    add_theme_support( 'html5', array( 'search-form' ) );
-}
-add_action( 'after_setup_theme', 'wpdocs_after_setup_theme' );
-//custom header
-add_theme_support( 'custom-header' );
-add_action( 'widgets_init', 'create_widget_init' );
-$args = array(
- 'flex-width' => true,
- 'width' => 1200,
- 'flex-height' => true,
- 'height' => 360,
- 'default-image' => get_template_directory_uri() . '/images/header.jpg',
-);
-add_theme_support( 'custom-header', $args );
-
-
-// Add Twitter Widget
-    
-function create_widget_init() {
-	
+function create_widgets_init() {
 	register_sidebar( array(
-	    'name' =>__( 'Homepage sidebar', 'create'),
-	    'id' => 'sidebar-2',
-	    'description' => __( 'Appears on the static front page template', 'create' ),
-	    'before_widget' => '<aside id="%1$s" class="widget %2$s">',
-	    'after_widget' => '</aside>',
-	    'before_title' => '<h3 class="widget-title">',
-	    'after_title' => '</h3>',
+		'name'          => __( 'Sidebar', 'create' ),
+		'id'            => 'sidebar-1',
+		'description'   => __( 'Main sidebar that appears on the left.', 'create' ),
+		'before_widget' => '<aside id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
 	) );
 
+	register_sidebar( array(
+		'name'          => __( 'Intro Widget', 'create' ),
+		'id'            => 'sidebar-2',
+		'description'   => __( 'Additional widget that appears only on your default homepage.', 'create' ),
+		'before_widget' => '<aside id="%1$s" class="widget-intro %2$s">',
+		'after_widget'  => '</aside>',
+		'before_title'  => '<h4 class="widget-title">',
+		'after_title'   => '</h4>',
+	) );
 }
-if ( function_exists( 'add_theme_support' ) ) {
-    add_theme_support( 'post-thumbnails' );
-    set_post_thumbnail_size( 150, 150, true ); // default Featured Image dimensions (cropped)
- 
-    // additional image sizes
-    // delete the next line if you do not need additional image sizes
-    add_image_size( 'category-thumb', 300, 9999 ); // 300 pixels wide (and unlimited height)
- }
+add_action( 'widgets_init', 'create_widgets_init' );
+
+/**
+ * Enqueue scripts and styles.
+ */
+function create_scripts() {
+
+	// Enqueue masonry
+	wp_enqueue_script( 'masonry');
+
+	// Localize script (only few lines in helpers.js)
+    wp_localize_script( 'create-helpers', 'create-vars', array(
+ 	    'author'   => __( 'Your Name', 'create' ),
+ 	    'email'    => __( 'E-mail', 'create' ),
+		'url'      => __( 'Website', 'create' ),
+		'comment'  => __( 'Your Comment', 'create' )
+ 	) );
+
+	// Enqueue default style
+	wp_enqueue_style( 'create-style', get_stylesheet_uri() );
+
+	// Google fonts
+	wp_enqueue_style( 'create-fonts', create_fonts_url(), array(), '1.0.0' );
+
+	//For genericons
+	wp_enqueue_style( 'genericons', get_template_directory_uri() . '/css/genericons/genericons.css', false, '3.4.1' );
+
+    // JS helpers (This is also the place where we call the jQuery in array)
+	wp_enqueue_script( 'create-helpers', get_template_directory_uri() . '/js/helpers.js', array( 'jquery' ), '1.0.0', true );
+
+	// Mobile navigation
+	wp_enqueue_script( 'create-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0.0', true );
+
+	// Skip link fix
+	wp_enqueue_script( 'create-skip-link-focus-fix', get_template_directory_uri() . '/js/skip-link-focus-fix.js', array(), '1.0.0', true );
+
+	// Comments
+	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) ) {
+		wp_enqueue_script( 'comment-reply' );
+	}
+
+	/**
+	 * Loads up Cycle JS
+	 */
+	$featured_slider_option = get_theme_mod( 'featured_slider_option', create_get_default_theme_options( 'featured_slider_option' ) );
+
+	if( 'disabled' != $featured_slider_option  ) {
+		wp_register_script( 'jquery.cycle2', get_template_directory_uri() . '/js/jquery.cycle/jquery.cycle2.min.js', array( 'jquery' ), '2.1.5', true );
+
+		/**
+		 * Condition checks for additional slider transition plugins
+		 */
+		$featured_slide_transition_effect = get_theme_mod( 'featured_slide_transition_effect', create_get_default_theme_options( 'featured_slide_transition_effect' ) );
+
+		// Scroll Vertical transition plugin addition
+		if ( 'scrollVert' ==  $featured_slide_transition_effect ){
+			wp_enqueue_script( 'jquery.cycle2.scrollVert', get_template_directory_uri() . '/js/jquery.cycle/jquery.cycle2.scrollVert.min.js', array( 'jquery.cycle2' ), '20140128', true );
+		}
+		// Flip transition plugin addition
+		else if ( 'flipHorz' ==  $featured_slide_transition_effect || 'flipVert' ==  $featured_slide_transition_effect ){
+			wp_enqueue_script( 'jquery.cycle2.flip', get_template_directory_uri() . '/js/jquery.cycle/jquery.cycle2.flip.min.js', array( 'jquery.cycle2' ), '20140128', true );
+		}
+		// Shuffle transition plugin addition
+		else if ( 'tileSlide' ==  $featured_slide_transition_effect || 'tileBlind' ==  $featured_slide_transition_effect ){
+			wp_enqueue_script( 'jquery.cycle2.tile', get_template_directory_uri() . '/js/jquery.cycle/jquery.cycle2.tile.min.js', array( 'jquery.cycle2' ), '20140128', true );
+		}
+		// Shuffle transition plugin addition
+		else if ( 'shuffle' ==  $featured_slide_transition_effect ){
+			wp_enqueue_script( 'jquery.cycle2.shuffle', get_template_directory_uri() . '/js/jquery.cycle/jquery.cycle2.shuffle.min.js', array( 'jquery.cycle2' ), '20140128 ', true );
+		}
+		else {
+			wp_enqueue_script( 'jquery.cycle2' );
+		}
+	}
+
+	/**
+	 * Loads up Scroll Up script
+	 */
+	$disable_scrollup = get_theme_mod( 'disable_scrollup', create_get_default_theme_options( 'disable_scrollup' ) );
+
+	if ( '1' != $disable_scrollup ) {
+		wp_enqueue_script( 'create-scrollup', get_template_directory_uri() . '/js/scrollup.js', array( 'jquery' ), '20141223	', true  );
+	}
+}
+add_action( 'wp_enqueue_scripts', 'create_scripts' );
+
+/**
+ * Enqueue scripts and styles for Metaboxes
+ * @uses wp_register_script, wp_enqueue_script, and  wp_enqueue_style
+ *
+ * @action admin_print_scripts-post-new, admin_print_scripts-post, admin_print_scripts-page-new, admin_print_scripts-page
+ *
+ * @since Create 1.4
+ */
+function create_enqueue_metabox_scripts() {
+    //Scripts
+    wp_enqueue_script( 'create-metabox', get_template_directory_uri() . '/js/metabox.js', array( 'jquery', 'jquery-ui-tabs' ), '2013-10-05' );
+
+	//CSS Styles
+	wp_enqueue_style( 'create-metabox-tabs', get_template_directory_uri() . '/css/metabox-tabs.css' );
+}
+add_action( 'admin_print_scripts-post-new.php', 'create_enqueue_metabox_scripts', 11 );
+add_action( 'admin_print_scripts-post.php', 'create_enqueue_metabox_scripts', 11 );
+add_action( 'admin_print_scripts-page-new.php', 'create_enqueue_metabox_scripts', 11 );
+add_action( 'admin_print_scripts-page.php', 'create_enqueue_metabox_scripts', 11 );
+
+
+/**
+ * Register Google fonts.
+ *
+ */
+function create_fonts_url() {
+	$font_url = '';
+	/*
+	 * Translators: If there are characters in your language that are not supported
+	 * by chosen font(s), translate this to 'off'. Do not translate into your own language.
+	 */
+	if ( 'off' !== _x( 'on', 'Google font: on or off', 'create' ) ) {
+		$font_url = add_query_arg( 'family', urlencode( 'Bitter:400,700,400italic|Josefin Sans:400,400italic|Varela:400' ), "//fonts.googleapis.com/css" );
+	}
+
+	return $font_url;
+}
+
+/**
+ * Enqueue Google fonts style to admin screen for custom header display.
+ */
+function create_admin_fonts() {
+	wp_enqueue_style( 'create-font', create_fonts_url(), array(), '1.0.0' );
+}
+add_action( 'admin_print_scripts-appearance_page_custom-header', 'create_admin_fonts' );
+
+

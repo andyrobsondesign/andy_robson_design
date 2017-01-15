@@ -62,7 +62,7 @@
      
 
         <!--MENU STARTS-->
-       			<h3 class="menu"><?php _e( 'Andy Robson Design', 'advance' ); ?></h3>
+       			<h3 class="menu"><?php _e( 'Andy Robson Design', 'accelerate-theme-child' ); ?></h3>
        
        			 <div id="navmenu">
         
@@ -77,7 +77,7 @@
         
     			</div>
       	</div>
-        <a id="showHere"></a>
+      <a id="showHere"></a>
     </div>
      </div>  
 

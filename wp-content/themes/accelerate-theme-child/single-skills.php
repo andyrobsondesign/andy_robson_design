@@ -1,7 +1,7 @@
 <?php
 /**
  * The template for displaying the single skills page
- *
+ * Template Name:skills single
  * This is the template that displays all pages by default.
  * Please note that this is the WordPress construct of pages
  * and that other 'pages' on your WordPress site will use a
@@ -76,11 +76,12 @@ get_header(); ?>
 	<div>
   
 	<section class="site-content">
-	      <div class="contact-tag align-center">
+	      <div id="contact-tag" div class="contact-tag align-center">
 	      <h2><?php echo $contact; ?></h2>
 			  <br>
 <a class="button" href="<?php echo home_url(); ?>/contact-me">Contact Me</a>
 		  </div>
+	  </section>
 	      </div><!-- about-tag -->
 	    </div><!-- #content -->			
 

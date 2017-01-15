@@ -1,0 +1,1238 @@
+@charset "UTF-8";
+/*
+Theme Name: Crafter-Child
+Theme URI: https://www.andyrobsondesign.com
+Author: Andy Robson Design
+Author URI: https://www.andyrobsondesign.com
+Description: Crafter is a great business and corporate theme. Works on all devices from computer to mobile with its responsive design. Optimized for SEO, easy to customize and translation ready.
+Template:crafter
+Version: 1.0.10
+License: GNU General Public License v3 or later
+License URI: http://www.gnu.org/licenses/gpl-3.0.en.html
+Text Domain: crafter-theme-child
+Tags: right-sidebar, two-columns, custom-background, custom-colors, custom-header, custom-menu, featured-image-header, featured-images, flexible-header, full-width-template, rtl-language-support, sticky-post, theme-options, threaded-comments, translation-ready
+*/
+
+@import url(../crafter/style.css);
+
+
+/*Header*/
+.logo_container .logo_desc {
+  font-family: 'playlistcaps', "Times New Roman", Times, serif;
+  font-style: italic;
+  font-size: 14px;
+  font-size: 0.875rem;
+  color: #b3b3b3;
+  margin: 0;
+}
+h2.section-title, .welcome-intro{
+	font-family:playlistcaps;
+	
+}
+h1, h2, h3, h4, h5, h6{
+	font-family:playlistcaps;
+}
+p.intro-text{
+	font-family:playlistcaps;
+	font-size:2em;
+}
+.btn-ql{
+	font-size:1.5em;
+}
+.btn-ql:hover, .btn-ql:hover:hover, .btn-ql:active:hover{
+	font-size:2em;
+}
+h3{
+	font-family:playlistcaps
+}
+body{
+	font-family: hero;
+	font-size: 18px;
+	line-height: 1.42857143;
+}
+
+  /*Navigation*/
+  #ql_nav_btn i {
+    font-size: 28px;
+    font-size: 1.75rem;
+  }
+  a.ql_logo{
+	  font-family:playlistcaps;
+  }
+  /*Top level menu link items style*/
+  #jqueryslidemenu ul.nav > li > a {
+    text-decoration: none;
+    font-size: 16px;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    -webkit-transition: all 200ms ease-in-out;
+    -o-transition: all 200ms ease-in-out;
+    transition: all 200ms ease-in-out;
+    color: #383838;
+    padding: 0.78571428571429em 1.07142857142857em;
+    outline: 0;
+  }
+  #jqueryslidemenu ul.nav > li > ul > li a {
+    font-size: 13px;
+    font-size: 1.75rem;
+    padding: 0.5em 1.42857142857143em;
+    font-weight: bold;
+  }
+  #jqueryslidemenu ul.nav > li > ul > li > ul > li a {
+    font-size: 12px;
+    font-size: 1.75rem;
+    display: block;
+    font-weight: normal;
+  }
+  .welcome-section {
+    position: relative;
+    background-position: center;
+    background-size: cover;
+    padding-bottom: 45%;
+  }
+  .welcome-section::before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+  }
+  .welcome-section img {
+    width: 100%;
+    height: auto;
+    position: relative;
+    z-index: 0;
+  }
+  .welcome-intro {
+    color: #fff;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -40%);
+    -ms-transform: translate(-50%, -40%);
+    -o-transform: translate(-50%, -40%);
+    transform: translate(-50%, -40%);
+    z-index: 2;
+    text-align: center;
+    width: 68%;
+  }
+  .welcome-intro .intro-line {
+    font-size: 60px;
+    font-size: 3.75rem;
+    text-transform: uppercase;
+    font-weight: 900;
+    color: #fff;
+    margin-bottom: 0.5em;
+  }
+  .welcome-intro .intro-text {
+    font-size: 18px;
+    font-size: 1.125rem;
+    font-weight: normal;
+    color: #eeeeee;
+    margin-bottom: 2.77777777777778em;
+  }
+  /*
+Services Section
+---------------------------------------*/
+.services-section {
+  padding: 5.5% 2% 4.5% 2%;
+  
+}
+.widget_service-widget {
+  margin: 0 2.3% 3%;
+  width: 30%;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  padding-left: 65px;
+}
+.service .service-category {
+  -webkit-transform: rotate(-90deg);
+  -ms-transform: rotate(-90deg);
+  -o-transform: rotate(-90deg);
+  transform: rotate(-90deg);
+  display: inline-block;
+  vertical-align: bottom;
+  text-transform: uppercase;
+  bottom: 30px;
+  left: -15px;
+  position: absolute;
+  color: #383838;
+  font-size: 14px;
+  font-size: 0.875rem;
+}
+.service .service-category::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -13px;
+  right: -28px;
+  height: 1px;
+  width: 70px;
+  background-color: #e9ac40;
+  z-index: 1;
+}
+.service .service-category::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -20px;
+  right: -18px;
+  width: 1px;
+  height: 38px;
+  background-color: #e9ac40;
+  z-index: 1;
+}
+.service .service-category span {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 50%;
+  right: -70px;
+  -webkit-transform: translate(0, -50%);
+  -ms-transform: translate(0, -50%);
+  -o-transform: translate(0, -50%);
+  transform: translate(0, -50%);
+  height: 1px;
+  width: 60px;
+  background-color: #e9ac40;
+  z-index: 1;
+}
+.service .service-icon {
+  max-width: 100%;
+  height: 100%;
+  margin-bottom: 1.25rem;
+}
+.service .service-text {
+  display: inline-block;
+  vertical-align: top;
+  font-size: 13px;
+  font-size: 0.8125rem;
+}
+.service .service-text h4 {
+  margin-bottom: 0.75em;
+  text-transform: uppercase;
+}
+.service .service-text p {
+  margin-bottom: 0;
+}
+.service .service-btn {
+  text-transform: uppercase;
+}
+.service .service-btn i {
+  margin-left: 5px;
+  font-size: 14px;
+  font-size: 0.875rem;
+}
+/*
+About Section
+---------------------------------------*/
+.about-section {
+  padding: 5.5% 10% 5.5% 10%;
+}
+.about-section .about-gallery {
+  display: inline-block;
+  vertical-align: top;
+  width: 45%;
+  margin-right: 5%;
+}
+.about-section .about-gallery .about-gallery-image {
+  background-position: center;
+  background-size: cover;
+  display: inline-block;
+  vertical-align: top;
+  width: 45%;
+  position: relative;
+  padding-bottom: 45%;
+  margin: 2%;
+}
+.about-section .about-gallery .about-gallery-image a {
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 1;
+}
+.about-section .about-gallery.images_amount1 .about-gallery-image {
+  width: 100%;
+  padding-bottom: 65%;
+}
+.about-section .about-text {
+  display: inline-block;
+  vertical-align: top;
+  width: 44%;
+  margin-left: 5%;
+  padding-top: 2%;
+}
+.about-section .about-text .about-service {
+  margin-bottom: 15%;
+}
+.about-section .about-text .about-service h4 {
+  text-transform: uppercase;
+  margin-bottom: 1em;
+  font-weight: bold;
+}
+.about-section .about-text .about-service p {
+  position: relative;
+  padding-left: 60px;
+}
+.about-section .about-text .about-service p::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: 30px;
+  height: 1px;
+  background-color: #e9ac40;
+  z-index: 1;
+}
+.about-section .about-text .about-service p::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 5px;
+  left: 37px;
+  width: 1px;
+  height: 15px;
+  background-color: #e9ac40;
+  z-index: 1;
+}
+/*
+Pricing Section
+---------------------------------------*/
+.pricing-section {
+  padding: 5% 5% 8% 5%;
+}
+.pricing-table-wrap {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-around;
+}
+.pricing-section .pricing-table {
+  text-align: center;
+  flex: 1 auto;
+  margin: 5%;
+  position: relative;
+  padding: 20px;
+}
+.pricing-section .pricing-table .pricing-icon {
+  margin: 0.625em;
+}
+.pricing-section .pricing-table h3 {
+  font-size: 18px;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  margin: 1.25rem 0;
+  font-weight: bold;
+}
+.pricing-section .pricing-table.featured h3 {
+  color: #e9ac40;
+}
+.pricing-section .pricing-table .pricing-price {
+  font-size: 40px;
+  font-size: 2.5rem;
+  color: #555555;
+  font-weight: bold;
+  margin: 10px 0;
+  display: block;
+}
+.pricing-section .pricing-table .pricing-price .cd-duration {
+  font-size: 16px;
+  font-size: 1rem;
+  font-style: italic;
+}
+.pricing-section .pricing-table .pricing-price .cd-duration::before {
+  content: "/";
+  margin-right: 2px;
+}
+.pricing-section .pricing-table .pricing-price .cd-currency {
+  display: inline-block;
+  font-size: 16px;
+  font-size: 1rem;
+  font-weight: 700;
+  margin-top: 10px;
+  vertical-align: top;
+}
+.pricing-section .pricing-table.featured .pricing-price {
+  color: #e9ac40;
+}
+.pricing-section .pricing-table ul {
+  padding: 0;
+  list-style: none;
+  margin: 1.25rem 0;
+}
+.pricing-section .pricing-table ul li {
+  font-size: 14px;
+  font-size: 0.875rem;
+  line-height: 30px;
+  margin-bottom: 5px;
+}
+.pricing-section .pricing-table ul li em {
+  display: inline-block;
+  margin-bottom: 0;
+  color: #555555;
+  font-style: normal;
+  font-weight: bold;
+}
+.pricing-section .pricing-table .btn-ql {
+  color: #383838;
+  margin: 1.25rem 0;
+}
+.pricing-section .pricing-table::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -25px;
+  left: -15px;
+  width: 1px;
+  height: 90%;
+  background-color: #e9ac40;
+  z-index: 1;
+}
+.pricing-section .pricing-table.featured::before {
+  width: 3px;
+}
+.pricing-section .pricing-table::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -15px;
+  left: -25px;
+  height: 1px;
+  width: 90%;
+  background-color: #e9ac40;
+  z-index: 1;
+}
+.pricing-section .pricing-table.featured::after {
+  height: 3px;
+}
+.pricing-section .pricing-table span.lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: -1;
+}
+.pricing-section .pricing-table span.lines::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -25px;
+  right: -15px;
+  width: 1px;
+  height: 90%;
+  background-color: #e9ac40;
+  z-index: 1;
+}
+.pricing-section .pricing-table span.lines::after {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -15px;
+  right: -25px;
+  height: 1px;
+  width: 90%;
+  background-color: #e9ac40;
+  z-index: 1;
+}
+.pricing-section .pricing-table.featured span.lines::before {
+  width: 3px;
+}
+.pricing-section .pricing-table.featured span.lines::after {
+  height: 3px;
+}
+/*
+Blog Section
+---------------------------------------*/
+.blog-section {
+  padding: 5% 0;
+}
+.blog-wrap {
+  margin-bottom: 25px;
+}
+.blog-wrap .blog-item {
+  background-position: center;
+  background-size: cover;
+  position: relative;
+  width: 35%;
+  display: inline-block;
+  vertical-align: top;
+  margin-bottom: 3%;
+  padding-top: 25%;
+}
+.blog-wrap .blog-item::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+.blog-wrap .blog-item .blog-item-link {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  display: block;
+  z-index: 2;
+}
+.blog-wrap .blog-time-date {
+  display: block;
+  position: relative;
+  text-align: center;
+  font-size: 16px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  line-height: 20px;
+  width: 49px;
+  margin: 0 auto;
+  margin-bottom: 5px;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+.blog-wrap .blog-time-date::before {
+  content: "";
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  border-radius: 50%;
+  border: 1px solid #e9ac40;
+  z-index: -1;
+}
+.blog-wrap .blog-time-date::after {
+  content: "";
+  position: absolute;
+  bottom: -90%;
+  left: 50%;
+  width: 1px;
+  height: 80%;
+  background-color: #e9ac40;
+}
+.blog-wrap .blog-item-entry {
+  position: relative;
+  z-index: 4;
+  min-height: 9.4375rem;
+}
+.blog-wrap .blog-item-entry .entry-half {
+  display: inline-block;
+  width: 22%;
+  position: relative;
+  vertical-align: top;
+  margin: 5% 4%;
+  text-align: center;
+}
+.blog-wrap .blog-item-entry .entry-half2 {
+  display: inline-block;
+  width: 61%;
+  margin: 4%;
+  position: relative;
+  vertical-align: top;
+}
+.blog-wrap .blog-item-entry .entry-half2 p {
+  font-size: 13px;
+  font-size: 0.8125rem;
+  font-family: serif;
+  color: #b3b3b3;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+.blog-wrap .blog-item-entry .entry-half2 p a {
+  color: #b3b3b3;
+}
+.blog-wrap .blog-item-title {
+  font-size: 18px;
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  line-height: 24px;
+  color: #fff;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.3);
+}
+.blog-wrap .blog-item-title a {
+  color: inherit;
+}
+/*
+Animation Overflow
+---------------------------------------*/
+.video-section,
+.quote-section,
+.map-section {
+  overflow: hidden;
+}
+/*
+
+
+
+
+/*ABOUT PAGE */
+.hero-about {
+    background: url("img/aboutheader.jpg") no-repeat scroll  center / cover rgba(0, 0, 0, 0);
+    max-width:1200px;
+	width:100%;
+	height: 360px;
+	
+}
+#quote{
+	font-family: playlist-script;
+	font-size: 24px;
+	line-height: 1.42857143;
+}
+/******BLOG***********/
+.hero-blog {
+    background: url("img/blogheader.jpg") no-repeat scroll  center / cover rgba(0, 0, 0, 0);
+    width:100%;
+	height: 360px;
+}
+.entry-title{
+	color:#ff889d;
+}
+.entry-time{
+	color:#ff889d;
+}
+.entry-meta, .entry-summary{
+	color:#ff889d;
+}
+article.post-entry{
+	color:#f9c2c7;
+}
+h2.entry-title{
+	color: #ff889d;
+}
+/*****SERVICES*******/
+.hero-services {
+    background: url("img/servicesheader.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
+    width:100%;
+	height: 360px;
+}
+.pkg-1, .pkg-2, .pkg-3, .pkg-4, .pkg-other, .a-la-carte, .care-plans, .booking{
+	border-top: 3px dotted #e3e1e1;
+}
+
+
+/* SKILLS PAGE */
+.design-section,
+.discover-section {
+	display: inline-block;
+	align:right;
+	
+}
+.research-section h2{
+	display:inline-block;
+	align:left;
+}
+
+.design-section h2,
+.discover-section h2, 
+.research-section h2{
+    font-weight: 600;
+	display: inline-block;
+	
+}
+
+.discover-section, .design-section:nth-child(odd) .service-image {
+    float: left;
+
+	
+}
+
+.research-section:nth-child(even) .service-image {
+    float: right;
+	
+}
+
+.design-description, .research-description, .discover-description {
+	display: inline-block;
+}
+
+.design-description, .research-description, .discover-description  p{
+    color: #555;
+	width: 575px;
+	display:inline-block;
+	
+	
+}
+
+.align-left {
+    float: left;
+	display: inline-block;
+	
+}
+.align-right {
+    float: right;
+	display: inline-block;
+}
+
+.contact-tag {
+    margin-top: 50px;
+    text-align: center;
+	display: inline-block;
+	margin-left:400px;
+}
+
+.contact-description {
+    float:center;
+    display: inline-block;
+}
+
+.contact-button {
+    float:center;
+    display: inline-block;
+	border:dotted;
+}
+.map {
+    width: 40%; 
+    margin: 115px 0; 
+}
+
+
+.map > img {
+    float: left;
+    margin: 33px 50px 15px;
+}
+ 
+/* Four oh Four*/
+.fourohfour h2 {
+    font-family: 'Montserrat', sans-serif; 
+    font-size: 33px; 
+    color: #ff889d; 
+    text-transform: capitalize; 
+}
+    
+.fourohfour p {
+    font-size: 1.05em;
+}
+    
+div.fourohfour {
+    float: left; 
+    width: 60%; 
+    margin: 0 0 115px; 
+}
+    
+.fourohfour a:link,
+.fourohfour a:visited {
+    color: #f9c2c7;
+    font-weight: bold;
+}    
+
+.fourohfour a:hover,
+.fourohfour a:active {
+    text-decoration: underline;
+}
+
+.search-field, 
+input[type="email"] {
+    font-family: 'Open Sans', sans-serif; 
+    font-size: 1.05em; 
+    text-transform: lowercase; 
+    border: 3px dotted #ff889d;
+    color: #ff889d;
+ 
+}
+
+input[type="submit"] {
+    background: #ff889d;
+    color: #fff;
+    width: 150px;
+    height: 37px;
+    border: none;
+    font-weight: bold;
+    font-family: 'Montserrat'; 
+    margin-left: 10px; 
+}
+
+.search-form input {
+    margin-bottom: 15px; 
+}
+
+.screen-reader-text {
+    color: #fff;
+}
+
+.widget {
+    border-bottom: 1px solid #bfbfbf; 
+}
+	/*/ X-Small Breakpoint
+	// ------------------
+	*/
+@media (min-width: 450px) and (max-width: 650px) {
+  .container {
+    width: 96%;
+  }
+  /*
+	Header
+	========================================== 
+	*/
+  .hero-header{
+	  display:none;
+  }
+  .logo_container {
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  #jqueryslidemenu {
+    text-align: center;
+  }
+ 
+  /*
+	Home
+	========================================== 
+	*/
+  /*
+	Welcome Section
+	---------------------------------------*/
+  .welcome-section {
+    padding-bottom: 65%;
+  }
+  .welcome-section .welcome-intro {
+    -webkit-transform: translate(-50%, -30%);
+    -ms-transform: translate(-50%, -30%);
+    -o-transform: translate(-50%, -30%);
+    transform: translate(-50%, -30%);
+  }
+  .welcome-intro .intro-line {
+    font-size: 38px;
+    font-size: 2.375rem;
+  }
+  .welcome-intro .intro-text {
+    font-size: 16px;
+    font-size: 1rem;
+    margin-bottom: 1.25em;
+  }
+  /*
+	Service Section
+	---------------------------------------*/
+  .service {
+    margin: 0 2.3% 7%;
+    width: 35%;
+  }
+  .widget_service-widget{
+	  margin: 0 3% 3%;
+	  width: 45%;
+	  display: inline-block;
+	  vertical-align: top;
+	  position: relative;
+	  padding-left: 65px;
+  }
+  .services-section {
+    padding: 5.5% 2% 4.5% 2%;
+	
+  
+  }
+  /*
+	About Section
+	---------------------------------------*/
+  .about-section .about-gallery .about-gallery-image {
+    width: 96%;
+    padding-bottom: 63%;
+  }
+  .about-section .about-gallery.images_amount4 .about-gallery-image {
+    padding-bottom: 45%;
+    width: 45%;
+  }
+  .about-section .about-text .about-service {
+    margin-bottom: 10%;
+  }
+  .about-section .about-text .about-service p {
+    font-size: 14px;
+    font-size: 0.875rem;
+  }
+  /*
+	Quote Section
+	---------------------------------------*/
+  .quote-wrap blockquote {
+    font-size: 16px;
+    font-size: 1rem;
+  }
+  .quote-cite {
+    font-size: 14px;
+    font-size: 0.875rem;
+  }
+  /*
+	Video Section
+	---------------------------------------*/
+  .video-wrap {
+    display: block;
+    width: 100%;
+  }
+  .video-text-wrap {
+    width: 100%;
+    display: block;
+    padding: 10%;
+  }
+  /*
+	Bullet Points Section
+	---------------------------------------*/
+  .bullet-points-wrap {
+    display: block;
+    width: 100%;
+    padding: 5% 0;
+  }
+  .bullet-points-image {
+    width: 100%;
+    display: block;
+  }
+  /*
+	Testimonials Section
+	---------------------------------------*/
+  .testimonials-section {
+    padding: 10% 10%;
+  }
+  /*
+	Image Section
+	---------------------------------------*/
+  .image-section .image-wrap {
+    position: relative;
+    top: auto;
+    left: auto;
+    bottom: auto;
+    padding-bottom: 52%;
+    width: 100%;
+    display: block;
+  }
+  .image-text {
+    margin-left: 0;
+    width: 100%;
+    display: block;
+    padding: 8%;
+  }
+  /*
+	Team Section
+	---------------------------------------*/
+  .team-section {
+    padding: 10% 0;
+  }
+  .team-member {
+    width: 30%;
+    margin: 3% 7%;
+  }
+  .team-member .member-image strong {
+    bottom: 69%;
+  }
+  /*
+	Phone Section
+	---------------------------------------*/
+  .phone-section {
+    padding: 8% 10%;
+  }
+  .phone-services {
+    display: block;
+    width: 100%;
+    margin-left: 0;
+    padding-top: 0;
+  }
+  .phone-services .service {
+    width: 45%;
+    margin: 0 2% 8%;
+  }
+  /*
+	Clients Section
+	---------------------------------------*/
+  .clients-section {
+    padding: 5% 0;
+  }
+  .clients-wrap .clients-logo {
+    width: 20%;
+    margin: 2%;
+  }
+  /*
+	Clients Section
+	---------------------------------------*/
+  .cd-has-margins .cd-pricing-list > li {
+    width: 32%;
+  }
+  .cd-value {
+    font-size: 60px;
+    font-size: 3.75rem;
+  }
+  .cd-duration {
+    font-size: 16px;
+    font-size: 1rem;
+  }
+  /*
+	Pricing Section
+	---------------------------------------*/
+  .pricing-section .pricing-table {
+    margin-bottom: 90px;
+  }
+  /*
+	Portfolio Section
+	---------------------------------------*/
+  .portfolio-section .portfolio-item .portfolio-hover span,
+  .portfolio-container .portfolio-item .portfolio-hover span {
+    font-size: 16px;
+    font-size: 1rem;
+  }
+  /*
+	Blog Section
+	---------------------------------------*/
+  .blog-wrap .blog-item {
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+  }
+  /*
+	Content
+	========================================== 
+	*/
+  .metadata ul li {
+    float: left;
+  }
+  /*
+	Sidebar
+	========================================== 
+	*/
+  #sidebar {
+    padding-right: 0;
+  }
+  #sidebar .widget {
+    padding: 0 20px;
+  }
+  /*Comments Form---------------------------------------------------*/
+  #respond .input-wrap {
+    width: 46%;
+  }
+}
+/*
+/*
+	// Small Breakpoint
+	// ------------------
+	*/
+@media (min-width: 768px) and (max-width: 1345px) {
+  .container {
+    width: 96%;
+  }
+  /*
+	Header
+	========================================== 
+	*/
+  .logo_container {
+    margin-bottom: 10px;
+    text-align: left;
+  }
+  #jqueryslidemenu {
+    text-align: center;
+  }
+  /*
+	Home
+	========================================== 
+	*/
+  /*
+	Welcome Section
+	---------------------------------------*/
+  .welcome-section {
+    padding-bottom: 65%;
+  }
+  .welcome-section .welcome-intro {
+    -webkit-transform: translate(-50%, -30%);
+    -ms-transform: translate(-50%, -30%);
+    -o-transform: translate(-50%, -30%);
+    transform: translate(-50%, -30%);
+  }
+  .welcome-intro .intro-line {
+    font-size: 38px;
+    font-size: 2.375rem;
+  }
+  .welcome-intro .intro-text {
+    font-size: 16px;
+    font-size: 1rem;
+    margin-bottom: 1.25em;
+  }
+  /*
+	Service Section
+	---------------------------------------*/
+  .service {
+    margin: 0 2.3% 7%;
+    width: 45%;
+  }
+  /*
+	About Section
+	---------------------------------------*/
+  .about-section .about-gallery .about-gallery-image {
+    width: 96%;
+    padding-bottom: 63%;
+  }
+  .about-section .about-gallery.images_amount4 .about-gallery-image {
+    padding-bottom: 45%;
+    width: 45%;
+  }
+  .about-section .about-text .about-service {
+    margin-bottom: 10%;
+  }
+  .about-section .about-text .about-service p {
+    font-size: 14px;
+    font-size: 0.875rem;
+  }
+  /*
+	Quote Section
+	---------------------------------------*/
+  .quote-wrap blockquote {
+    font-size: 16px;
+    font-size: 1rem;
+  }
+  .quote-cite {
+    font-size: 14px;
+    font-size: 0.875rem;
+  }
+  /*
+	Video Section
+	---------------------------------------*/
+  .video-wrap {
+    display: block;
+    width: 100%;
+  }
+  .video-text-wrap {
+    width: 100%;
+    display: block;
+    padding: 10%;
+  }
+  /*
+	Bullet Points Section
+	---------------------------------------*/
+  .bullet-points-wrap {
+    display: block;
+    width: 100%;
+    padding: 5% 0;
+  }
+  .bullet-points-image {
+    width: 100%;
+    display: block;
+  }
+  /*
+	Testimonials Section
+	---------------------------------------*/
+  .testimonials-section {
+    padding: 10% 10%;
+  }
+  /*
+	Image Section
+	---------------------------------------*/
+  .image-section .image-wrap {
+    position: relative;
+    top: auto;
+    left: auto;
+    bottom: auto;
+    padding-bottom: 52%;
+    width: 100%;
+    display: block;
+  }
+  .image-text {
+    margin-left: 0;
+    width: 100%;
+    display: block;
+    padding: 8%;
+  }
+  /*
+	Team Section
+	---------------------------------------*/
+  .team-section {
+    padding: 10% 0;
+  }
+  .team-member {
+    width: 30%;
+    margin: 3% 7%;
+  }
+  .team-member .member-image strong {
+    bottom: 69%;
+  }
+  /*
+	Phone Section
+	---------------------------------------*/
+  .phone-section {
+    padding: 8% 10%;
+  }
+  .phone-services {
+    display: block;
+    width: 100%;
+    margin-left: 0;
+    padding-top: 0;
+  }
+  .phone-services .service {
+    width: 45%;
+    margin: 0 2% 8%;
+  }
+  /*
+	Clients Section
+	---------------------------------------*/
+  .clients-section {
+    padding: 5% 0;
+  }
+  .clients-wrap .clients-logo {
+    width: 20%;
+    margin: 2%;
+  }
+  /*
+	Clients Section
+	---------------------------------------*/
+  .cd-has-margins .cd-pricing-list > li {
+    width: 32%;
+  }
+  .cd-value {
+    font-size: 60px;
+    font-size: 3.75rem;
+  }
+  .cd-duration {
+    font-size: 16px;
+    font-size: 1rem;
+  }
+  /*
+	Pricing Section
+	---------------------------------------*/
+  .pricing-section .pricing-table {
+    margin-bottom: 90px;
+  }
+  /*
+	Portfolio Section
+	---------------------------------------*/
+  .portfolio-section .portfolio-item .portfolio-hover span,
+  .portfolio-container .portfolio-item .portfolio-hover span {
+    font-size: 16px;
+    font-size: 1rem;
+  }
+  /*
+	Blog Section
+	---------------------------------------*/
+  .blog-wrap .blog-item {
+    width: 50%;
+    display: inline-block;
+    vertical-align: top;
+  }
+  /*
+	Content
+	========================================== 
+	*/
+  .metadata ul li {
+    float: left;
+  }
+  /*
+	Sidebar
+	========================================== 
+	*/
+  #sidebar {
+    padding-right: 0;
+  }
+  #sidebar .widget {
+    padding: 0 20px;
+  }
+  /*Comments Form---------------------------------------------------*/
+  #respond .input-wrap {
+    width: 46%;
+  }
+}
+/*
