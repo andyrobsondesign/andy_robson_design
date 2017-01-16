@@ -16,40 +16,71 @@ get_header(); ?>
 	<section class="hero-blog">
 	</section>
 
-	<main id="main" class="site-main col-md-8" role="main">
+	<?php
+	$crafter_enable_section = get_theme_mod( 'crafter_blog_enable', true );
+	if ( $crafter_enable_section || is_customize_preview() ) :
+	?>
+	<div id="blog-section" class="blog-section" <?php if( false == $crafter_enable_section ): echo 'style="display: none;"'; endif ?>>
+	    <?php 
+	    $blog_url = '';
+	    if( get_option( 'show_on_front' ) == 'page' ){
+	        $blog_url = get_permalink( get_option( 'page_for_posts' ) );
+	    }else{ 
+	        $blog_url = home_url();
+	    }
+	?>
+	    <h3 class="section-title wow fadeIn"><a href="<?php echo esc_url( $blog_url ); ?>"><?php echo esc_html( get_theme_mod( 'crafter_blog_title', __( 'Read All About It', 'crafter' ) ) ); ?></a></h3>
 
-		<?php if ( have_posts() ) : ?>
+	    	<?php
+	        $args = array(
+	            'post_type' => 'post',
+	            'posts_per_page' => 5
+	        );
+        
+	        $the_query = new WP_Query( $args );
+	        if ( $the_query->have_posts() ) :
+	    	?>
+
+			<div class="blog-wrap js-flickity" data-flickity-options='{ "cellAlign": "left", "contain": true, "prevNextButtons": false, "pageDots": true }'>
 
 			<?php /* Start the Loop */ ?>
-			<?php while ( have_posts() ) : the_post(); ?>
+			<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
+				<?php $blog_image = ''; ?>
+	            <?php if ( has_post_thumbnail() ) {
+	                $blog_image = 'style="background-image: url(' . esc_url( get_the_post_thumbnail_url( $the_query->post->ID, 'crafter_blog-section' ) ) . ');"';
+	            } ?>
 
-				<?php
+				<article id="post-<?php the_ID(); ?>" <?php post_class('blog-item wow fadeIn');  echo $blog_image; ?>>
+	                <a href="<?php echo esc_url( get_permalink() ) ?>" class="blog-item-link"></a>
+	                <div class="blog-item-entry">
+	                    <div class="entry-half">
+	                        <time class="blog-time-date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date( 'd M' ) ) ?></time>
+	                    </div>
+	                    <div class="entry-half2">
+	                        <?php the_title( sprintf( '<h2 class="blog-item-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
+	                        <?php
+	                        $byline = sprintf(
+	                        esc_html_x( 'by %s', 'post author', 'crafter' ),
+	                        '<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>' );
+                        
+	                        echo '<p>' . $byline . ' ';
+	                        if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+	                            esc_html_e( 'with ', 'crafter' );
+	                            comments_popup_link( esc_html__( 'No comments', 'crafter' ), esc_html__( '1 Comment', 'crafter' ), esc_html__( '% Comments', 'crafter' ) );
+	                        }
+	                        echo '</p>';
+	                        ?>
+	                    </div>
+	                </div>
 
-					/*
-					 * Include the Post-Format-specific template for the content.
-					 * If you want to override this in a child theme, then include a file
-					 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
-					 */
-					get_template_part( 'template-parts/content', get_post_format() );
-				?>
+	            </article>
 
 			<?php endwhile; ?>
-
-			<?php get_template_part( 'template-parts/pagination', 'index' ); ?>
-
-		<?php else : ?>
-
-			<?php get_template_part( 'template-parts/content', 'none' ); ?>
+<?php get_sidebar(); ?>
+			</div><!-- .blog-wrap -->
 
 		<?php endif; ?>
 
-	</main><!-- #main -->
 
-
-	<?php get_sidebar(); ?>
-
-
-<?php get_footer(); ?>
-
-
-
+	</div><!-- blog-section -->
+	<?php endif ?>

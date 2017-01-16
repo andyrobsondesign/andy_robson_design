@@ -24,6 +24,15 @@
 	    );
 
 	}
+	// Post thumbnails support
+	add_theme_support('post-thumbnails');
+	
+	// changes excerpt symbol
+	function custom_excerpt_more($more) {
+		return '...';
+	}
+	add_filter('excerpt_more', 'custom_excerpt_more');
+	
 	add_action( 'wp_enqueue_scripts', 'crafter_theme_enqueue_styles' );
 	// Create custom post types
 	function create_custom_post_types() {

@@ -600,6 +600,9 @@ Animation Overflow
     width:100%;
 	height: 360px;
 }
+div.main-content{
+	width:90%;
+}
 .entry-title{
 	color:#ff889d;
 }
@@ -612,9 +615,109 @@ Animation Overflow
 article.post-entry{
 	color:#f9c2c7;
 }
+header.entry-header{
+font-size: 22px;
+font-family: playlist-script;
+}
 h2.entry-title{
 	color: #ff889d;
 }
+p{
+	color:0000;
+}
+
+/* sidebar */
+#sidebar {
+	padding-top: 20px;
+	width:33%;
+}
+#sidebar li {
+	list-style-type: none;
+}
+#sidebar p {
+	font: 14px/28px 'Open Sans';
+	margin-bottom: 20px;
+}
+#sidebar .widget {
+	padding: 28px 31px;
+}
+#sidebar .widget_text {
+	border-bottom: 1px solid #BFBFBF;
+}
+#sidebar .widget_text img {
+	max-width: 175px;
+	margin: auto;
+	display: block;
+	
+}
+#sidebar .widget_text a {
+	color: #3b3b3b;
+	font-weight: 700;
+	text-decoration: underline;
+}
+#sidebar .widget_search {
+	border-bottom: 1px solid #BFBFBF;
+}
+#sidebar .widget_search input[type="text"] {
+	border-top: 1px solid #a6a6a6;
+	border-bottom: 1px solid #a6a6a6;
+	border-left: 1px solid #a6a6a6;
+	border-right: none;
+	width: 200px;
+	height: 36px;
+	padding: 8px;
+	vertical-align: middle;
+}
+#sidebar .widget_search input[type="submit"] {
+	border-top: 1px solid #a6a6a6;
+	border-bottom: 1px solid #a6a6a6;
+	border-right: 1px solid #a6a6a6;
+	border-left: none;
+	width: 35px;
+	height: 36px;
+	background: url('img/white-arrow-right.png') no-repeat 13px 10px #ff889d;
+	color: #ffffff;
+	margin-left: -5px;
+	vertical-align: middle;
+}
+#sidebar .widget_categories {
+	padding: 28px 31px 0 31px;
+}
+#sidebar .widget_categories h2,
+#sidebar .widget_archive h2 {
+	font: 600 14px 'Open Sans';
+	color: #ff889d;
+	margin-bottom: 20px;
+}
+#sidebar .widget_categories ul li,
+#sidebar .widget_archive ul li {
+	font: 600 14px 'Open Sans';
+	color: #ff889d;
+	margin-bottom: 15px;
+}
+#sidebar .widget_categories ul li a,
+#sidebar .widget_archive ul li a {
+	color: #ff889d;
+}
+aside#sidebar.col-md-4.widget-area{
+	
+}
+
+/*******Single Blog Post*************/
+
+div.entry-summary{
+	width:60%;
+}
+article.post-entry{
+	color:#9999;
+}
+article.post-entry.individual-post{
+	color:#9999;
+}
+.entry-meta, .entry-summary{
+	color:#4c4a4a;
+}
+
 /*****SERVICES*******/
 .hero-services {
     background: url("img/servicesheader.jpg") no-repeat scroll left center / cover rgba(0, 0, 0, 0);
@@ -1221,6 +1324,7 @@ input[type="submit"] {
     float: left;
   }
   /*
+
 	Sidebar
 	========================================== 
 	*/
@@ -1235,4 +1339,3 @@ input[type="submit"] {
     width: 46%;
   }
 }
-/*

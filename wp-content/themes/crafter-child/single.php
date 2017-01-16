@@ -1,10 +1,12 @@
-?php
+<?php
 /**
- * The Template for displaying all single posts
+ * The template for displaying single blog page post.
  *
- * @package WordPress
- * @subpackage crafter
- * @since crafter-theme-child 1.0
+ *.
+ *
+ * @link https://codex.wordpress.org/Template_Hierarchy
+ *
+ * @package Crafter
  */
 
 get_header(); ?>
@@ -13,7 +15,7 @@ get_header(); ?>
 	<section class="blog-page">
 		<div class="site-content">
 			<div class="main-content">
-				
+			
 				<?php
 				// Start the Loop.
 				while ( have_posts() ) : the_post(); ?>
@@ -38,6 +40,7 @@ get_header(); ?>
 								<span class="entry-terms category">Posted in <?php the_category(', '); ?></span>
 								<span class="entry-terms comments"><?php comments_number( 'No comments yet!', '1 comment', '% comments' ); ?></span>
 							</div>
+						
 						</footer>
 						
 					</div>
@@ -49,15 +52,14 @@ get_header(); ?>
 						endif; ?>
 			</div>
 
-			<?php get_sidebar(); ?>
-
 			<footer class="navigation container">
 				<div class="left">&larr;<a href="<?php echo home_url(); ?>/blog">back to posts</a></div>
 			</footer>
+		
 	 
 				<?php endwhile; ?>
 			</div>
 		</section>	
-		
+
 <?php
 get_footer();
