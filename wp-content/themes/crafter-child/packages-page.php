@@ -162,9 +162,17 @@ get_header(); ?>
 		<br>
 		<br>
 		<div class='care-plans'>
-		<h3>WordPress Care Plans<h3>
+		<h3>WordPress Care Plans</h3>
 			<p>You've put alot into your site, and now you want to protect it. Contact me for information WordPress Care Plans to make sure your site is backed up and secure!
 		</p>
+		<ul>Care Plans include: <ul>
+			<li>Managed WordPress Updates </li>
+			<li>Security Monitoring </li>
+			<li>Scheduled Sessions</li>
+			<li>Back ups</li>
+		</ul>
+		<class='contact-me'>
+		 <a href="http://localhost:8888/andy_robson_design/contact-me/">Contact me</a> for details and a quote 
 	</div>	
 		<br>
 		<br>

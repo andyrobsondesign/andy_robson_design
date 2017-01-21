@@ -69,8 +69,7 @@ if ( $crafter_enable_section || is_customize_preview() ) :
                         <li><em></em> Backups</li>
                         <li><em></em> Security Monitoring</li>
                         <li><em></em> Scheduled Sessions</li>
-                        <li><em></em> Bandwidth</li>
-                        <li><em></em> Support</li>
+                        
                     </ul>
 
                     <a class="btn-ql" href="http://localhost:8888/andy_robson_design/services/">Select</a>

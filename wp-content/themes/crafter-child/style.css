@@ -625,21 +625,24 @@ h2.entry-title{
 p{
 	color:0000;
 }
+section.main-blog{
+	width:100%;
+}
 
+}
 /* sidebar */
-#sidebar {
-	padding-top: 20px;
+#sidebar{
+	float:right;
 	width:33%;
 }
+
 #sidebar li {
 	list-style-type: none;
 }
 #sidebar p {
 	font: 14px/28px 'Open Sans';
 	margin-bottom: 20px;
-}
-#sidebar .widget {
-	padding: 28px 31px;
+
 }
 #sidebar .widget_text {
 	border-bottom: 1px solid #BFBFBF;
@@ -680,9 +683,7 @@ p{
 	margin-left: -5px;
 	vertical-align: middle;
 }
-#sidebar .widget_categories {
-	padding: 28px 31px 0 31px;
-}
+
 #sidebar .widget_categories h2,
 #sidebar .widget_archive h2 {
 	font: 600 14px 'Open Sans';
@@ -700,8 +701,9 @@ p{
 	color: #ff889d;
 }
 aside#sidebar.col-md-4.widget-area{
-	
+	float:right;
 }
+
 
 /*******Single Blog Post*************/
 

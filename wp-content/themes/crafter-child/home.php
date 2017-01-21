@@ -15,7 +15,8 @@
 get_header(); ?>
 	<section class="hero-blog">
 	</section>
-
+<section class="main-blog">
+	
 	<?php
 	$crafter_enable_section = get_theme_mod( 'crafter_blog_enable', true );
 	if ( $crafter_enable_section || is_customize_preview() ) :
@@ -29,19 +30,21 @@ get_header(); ?>
 	        $blog_url = home_url();
 	    }
 	?>
+</div>
+<div>
 	    <h3 class="section-title wow fadeIn"><a href="<?php echo esc_url( $blog_url ); ?>"><?php echo esc_html( get_theme_mod( 'crafter_blog_title', __( 'Read All About It', 'crafter' ) ) ); ?></a></h3>
 
 	    	<?php
 	        $args = array(
 	            'post_type' => 'post',
-	            'posts_per_page' => 5
+	            'posts_per_page' => 3
 	        );
         
 	        $the_query = new WP_Query( $args );
 	        if ( $the_query->have_posts() ) :
 	    	?>
 
-			<div class="blog-wrap js-flickity" data-flickity-options='{ "cellAlign": "left", "contain": true, "prevNextButtons": false, "pageDots": true }'>
+<div class="blog-wrap js-flickity" data-flickity-options='{ "cellAlign": "left", "contain": true, "prevNextButtons": false, "pageDots": false }'>
 
 			<?php /* Start the Loop */ ?>
 			<?php while ( $the_query->have_posts() ) : $the_query->the_post(); ?>
@@ -56,6 +59,7 @@ get_header(); ?>
 	                    <div class="entry-half">
 	                        <time class="blog-time-date" datetime="<?php echo esc_attr( get_the_date( 'c' ) ); ?>"><?php echo esc_html( get_the_date( 'd M' ) ) ?></time>
 	                    </div>
+			
 	                    <div class="entry-half2">
 	                        <?php the_title( sprintf( '<h2 class="blog-item-title"><a href="%s" rel="bookmark">', esc_url( get_permalink() ) ), '</a></h2>' ); ?>
 	                        <?php
@@ -64,23 +68,24 @@ get_header(); ?>
 	                        '<span class="author vcard"><a class="url fn n" href="' . esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) ) . '">' . esc_html( get_the_author() ) . '</a></span>' );
                         
 	                        echo '<p>' . $byline . ' ';
-	                        if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
-	                            esc_html_e( 'with ', 'crafter' );
-	                            comments_popup_link( esc_html__( 'No comments', 'crafter' ), esc_html__( '1 Comment', 'crafter' ), esc_html__( '% Comments', 'crafter' ) );
+	                       if ( ! is_single() && ! post_password_required() && ( comments_open() || get_comments_number() ) ) {
+	                           esc_html_e( 'with ', 'crafter' );
+	                           comments_popup_link( esc_html__( 'No comments','crafter' ), esc_html__( '1 Comment', 'crafter' ), esc_html__( '% Comments', 'crafter' ) );
 	                        }
 	                        echo '</p>';
-	                        ?>
+	                       ?>
 	                    </div>
-	                </div>
-
+	             
 	            </article>
-
-			<?php endwhile; ?>
 <?php get_sidebar(); ?>
+			<?php endwhile; ?>
+		</section>
 			</div><!-- .blog-wrap -->
 
 		<?php endif; ?>
-
-
+</div>
 	</div><!-- blog-section -->
 	<?php endif ?>
+</div>
+
+Andy Robson Design 2017
