@@ -1,0 +1,4 @@
+#ignore the following 
+.DS_Store
+wp-config.php
+wp-content/uploads/
