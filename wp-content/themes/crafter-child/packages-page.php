@@ -172,7 +172,7 @@ get_header(); ?>
 			<li>Back ups</li>
 		</ul>
 		<class='contact-me'>
-		 <a href="http://localhost:8888/andy_robson_design/contact-me/">Contact me</a> for details and a quote 
+		 <a href="http://andyrobsondesign.com/contact-me/">Contact me</a> for details and a quote 
 	</div>	
 		<br>
 		<br>

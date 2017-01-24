@@ -30,7 +30,7 @@ if ( $crafter_enable_section || is_customize_preview() ) :
                         
                     </ul>
 
-                    <a class="btn-ql" href="http://localhost:8888/andy_robson_design/services/">Select</a>
+                    <a class="btn-ql" href="http://andyrobsondesign.com/services/">Select</a>
                     <span class="lines"></span>
                 </div>
 
@@ -52,7 +52,7 @@ if ( $crafter_enable_section || is_customize_preview() ) :
 						<li><em>Photoshop</em> Starts at $47</li>
                     </ul>
 
-                    <a class="btn-ql" href="http://localhost:8888/andy_robson_design/services/">Select</a>
+                    <a class="btn-ql" href="http://andyrobsondesign.com/services/">Select</a>
                     <span class="lines"></span>
                 </div>
 
@@ -72,7 +72,7 @@ if ( $crafter_enable_section || is_customize_preview() ) :
                         
                     </ul>
 
-                    <a class="btn-ql" href="http://localhost:8888/andy_robson_design/services/">Select</a>
+                    <a class="btn-ql" href="http://andyrobsondesign.com/services/">Select</a>
                     <span class="lines"></span>
 						
                 </div>

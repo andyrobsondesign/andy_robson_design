@@ -24,7 +24,7 @@ if ( $crafter_enable_section || is_customize_preview() ) :
 			        <img src="http://demo.quemalabs.com/crafter/wp-content/uploads/2016/11/layers_64px.png" alt="" class="service-icon">
 			        <h4>Design</h4>
 			        <p>There are many questions to be answered when you start on the journey to create your site.  During this stage, we will uncover the answers to the goals for your site. </p>  
-			        <a href="http://localhost:8888/andy_robson_design/skills/design/" class="read-more">Learn More <i class="fa fa-angle-right"></i></a>
+			        <a href="http://andyrobsondesign.com/skills/design/" class="read-more">Learn More <i class="fa fa-angle-right"></i></a>
 			    </div>
 			    <div class="clearfix"></div>
 			</div>
@@ -36,7 +36,7 @@ if ( $crafter_enable_section || is_customize_preview() ) :
 			        <img src="http://demo.quemalabs.com/crafter/wp-content/uploads/2016/11/linegraph_64px.png" alt="" class="service-icon">
 			        <h4>Development</h4>
 			        <p>During this stage, I’ll research and plan how to meet those goals. You'll recieve a summary from the discovery stage and the research information to ensure we are on the same page before moving forward. </p>  
-			        <a href="http://localhost:8888/andy_robson_design/skills/develop/" class="read-more">Learn More <i class="fa fa-angle-right"></i></a>
+			        <a href="http://andyrobsondesign.com/skills/develop/" class="read-more">Learn More <i class="fa fa-angle-right"></i></a>
 			    </div>
 			    <div class="clearfix"></div>
 
@@ -51,7 +51,7 @@ if ( $crafter_enable_section || is_customize_preview() ) :
 			        <img src="http://demo.quemalabs.com/crafter/wp-content/uploads/2016/11/megaphone_64px.png" alt="" class="service-icon">
 			        <h4>Content Management</h4>
 			        <p>We will determine what your strategy is by creating user personas, preforming a content inventory audit, and determine your goals and KPI’s. .</p>  
-			        <a href="http://localhost:8888/andy_robson_design/skills/content-management/" class="read-more">Learn More <i class="fa fa-angle-right"></i></a>
+			        <a href="http://andyrobsondesign.com/skills/content-management/" class="read-more">Learn More <i class="fa fa-angle-right"></i></a>
 			    </div>
 			    <div class="clearfix"></div>
 
